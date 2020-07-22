@@ -1,0 +1,19 @@
+{
+    "name": "coupon-central",
+    "version": "1.0.0",
+    "description": "Build coupon site with ease.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Kasmin",
+    "license": "GPL2.0+",
+    "devDependencies": {
+        "@babel/core": "^7.9.0",
+        "@babel/preset-env": "^7.9.0",
+        "@babel/register": "^7.9.0",
+        "babel-loader": "^8.1.0",
+        "gulp": "^4.0.2",
+        "gulp-zip": "^5.0.1"
+    }
+}
