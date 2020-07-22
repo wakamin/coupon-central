@@ -1,0 +1,1 @@
+<input class="widefat" name="sd_coupon_link" id="sd_coupon_link" value="<?php echo esc_attr($link) ?>" />

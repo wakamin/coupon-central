@@ -16,3 +16,6 @@ include_once SDCOUPON_PLUGIN_PATH . 'includes/coupon/class-sdcoupon-post-type.ph
 
 // Coupon taxonomy
 include_once SDCOUPON_PLUGIN_PATH . 'includes/coupon/class-sdcoupon-taxonomy.php';
+
+// Coupon metabox
+include_once SDCOUPON_PLUGIN_PATH . 'includes/coupon/class-sdcoupon-metabox.php';

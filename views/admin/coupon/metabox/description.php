@@ -1,0 +1,1 @@
+<textarea class="widefat" name="sd_coupon_description" id="sd_coupon_description" rows="7"><?php echo esc_attr($description) ?></textarea>
