@@ -19,3 +19,6 @@ include_once SDCOUPON_PLUGIN_PATH . 'includes/coupon/class-sdcoupon-taxonomy.php
 
 // Coupon metabox
 include_once SDCOUPON_PLUGIN_PATH . 'includes/coupon/class-sdcoupon-metabox.php';
+
+// Admin Scripts
+include_once SDCOUPON_PLUGIN_PATH . 'includes/admin/class-sdcoupon-admin-scripts.php';

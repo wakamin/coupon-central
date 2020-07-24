@@ -89,11 +89,8 @@ if (!class_exists('SDCOUPON_Metabox')) {
             // Description
             add_meta_box('sd_coupon_description', __('Description', 'sd_coupon_central'), array($this, 'description_html'), 'sd_coupon', 'normal');
 
-            // Link
-            add_meta_box('sd_coupon_link', __('Link', 'sd_coupon_central'), array($this, 'link_html'), 'sd_coupon', 'normal');
-
-            // Coupon code
-            add_meta_box('sd_coupon_code', __('Coupon Code', 'sd_coupon_central'), array($this, 'coupon_code_html'), 'sd_coupon', 'side');
+            // Coupon detail
+            add_meta_box('sd_coupon_detail', __('Coupon Detail', 'sd_coupon_central'), array($this, 'coupon_detail_html'), 'sd_coupon', 'normal');
         }
 
         /**
@@ -111,31 +108,18 @@ if (!class_exists('SDCOUPON_Metabox')) {
         }
 
         /**
-         * Coupon link metabox html form
+         * Coupon detail metabox html form
          *
          * @param Object $post
          * @return Html view
          */
-        public function link_html($post)
+        public function coupon_detail_html($post)
         {
             $link = get_post_meta($post->ID, '_sd_coupon_link', true);
-            $this->_nonceField();
-
-            include_once SDCOUPON_PLUGIN_PATH . 'views/admin/coupon/metabox/link.php';
-        }
-
-        /**
-        * Coupon code metabox html form
-        *
-        * @param Object $post
-        * @return Html view
-        */
-        public function coupon_code_html($post)
-        {
             $code = get_post_meta($post->ID, '_sd_coupon_code', true);
             $this->_nonceField();
 
-            include_once SDCOUPON_PLUGIN_PATH . 'views/admin/coupon/metabox/code.php';
+            include_once SDCOUPON_PLUGIN_PATH . 'views/admin/coupon/metabox/coupon-detail.php';
         }
     }
     $SDCOUPON_Metabox = new SDCOUPON_Metabox();
