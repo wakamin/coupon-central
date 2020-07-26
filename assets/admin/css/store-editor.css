@@ -1,11 +1,13 @@
-.store-logo-box {
-    text-align: center;
-}
-
-.store-logo-box .logo-preview {
+.sd-coupon-store-logo-preview {
     margin-bottom: 10px;
 }
 
-.store-logo-box .logo-preview img {
+.sd-coupon-store-logo-preview img,
+.sd-coupon-store-logo-block img {
     height: 80px;
+}
+
+.sd-coupon-store-logo-block {
+    display: flex;
+    justify-content: center;
 }

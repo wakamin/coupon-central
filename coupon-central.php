@@ -17,9 +17,9 @@ if (!defined('ABSPATH')) {
     exit();
 }
 
- // Constants
- define('SDCOUPON_PLUGIN_URL', plugin_dir_url(__FILE__));
- define('SDCOUPON_PLUGIN_PATH', plugin_dir_path(__FILE__));
+// Constants
+define('SDCOUPON_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('SDCOUPON_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
- // Initialize
- require_once SDCOUPON_PLUGIN_PATH . 'init.php';
+// Initialize
+require_once SDCOUPON_PLUGIN_PATH . 'init.php';

@@ -28,9 +28,3 @@ include_once SDCOUPON_PLUGIN_PATH . 'includes/coupon/class-sdcoupon-detail-meta-
 
 // Admin Scripts
 include_once SDCOUPON_PLUGIN_PATH . 'includes/admin/class-sdcoupon-admin-scripts.php';
-
-// Store post type
-include_once SDCOUPON_PLUGIN_PATH . 'includes/store/class-sdcoupon-store-post-type.php';
-
-// Store meta box
-include_once SDCOUPON_PLUGIN_PATH . 'includes/store/class-sdcoupon-store-meta-box.php';

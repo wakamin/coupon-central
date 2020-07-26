@@ -38,7 +38,7 @@ jQuery(document).ready(function ($) {
             // Sends the attachment URL to our custom image input field.
             $(field_target).val(media_attachment.url);
             $(preview_target).attr("src", media_attachment.url);
-            $(".logo-preview").removeClass("sd-coupon-hide");
+            $(".sd-coupon-store-logo-preview").removeClass("sd-coupon-hide");
         });
 
         // Opens the media library frame.

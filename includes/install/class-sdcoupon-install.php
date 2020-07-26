@@ -29,6 +29,10 @@ if (!class_exists('SDCOUPON_Install')) {
             // Add custom post type
             SDCOUPON_Post_Type::register_coupon_post_type();
 
+            // Add custom taxonomy
+            SDCOUPON_Taxonomy::register_store_taxonomy();
+            SDCOUPON_Taxonomy::register_coupon_category_taxonomy();
+
             // flush rewrite rules
             flush_rewrite_rules();
         }
