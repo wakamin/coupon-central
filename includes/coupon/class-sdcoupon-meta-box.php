@@ -18,9 +18,21 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
          */
         public function __construct()
         {
+            add_action('init', array($this, 'init_set_coupon_details_meta_boxes'));
+
             add_action('add_meta_boxes', array($this, 'meta_boxes'));
 
             add_action('save_post', array($this, 'save_meta_box'), 10, 2);
+        }
+
+        /**
+         * Initialize coupon details meta boxes
+         *
+         * @return void
+         */
+        public function init_set_coupon_details_meta_boxes()
+        {
+            $this->setCouponDetailsMetaBoxes(apply_filters('sd_coupon_detail_meta_boxes', []));
         }
 
         /**
@@ -55,7 +67,7 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
             add_meta_box('sd_coupon_description', __('Description', 'sd_coupon_central'), array($this, 'description_html'), 'sd_coupon', 'normal');
 
             // Coupon detail
-            $couponDetailsMetaBoxes = apply_filters('sd_coupon_detail_meta_boxes', []);
+            $couponDetailsMetaBoxes = $this->couponDetailsMetaBoxes;
 
             array_multisort(
                 array_map(function ($el) {
@@ -65,7 +77,6 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
                 $couponDetailsMetaBoxes
             );
 
-            $this->setCouponDetailsMetaBoxes($couponDetailsMetaBoxes);
             add_meta_box('sd_coupon_detail', __('Coupon Detail', 'sd_coupon_central'), array($this, 'coupon_detail_html'), 'sd_coupon', 'normal');
         }
 
@@ -98,6 +109,7 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
                 );
             }
 
+
             foreach ($this->couponDetailsMetaBoxes as $mBox) {
                 // Update meta box
                 if (array_key_exists($mBox['key'], $_POST)) {
@@ -106,6 +118,10 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
                         $mBox['key'],
                         sanitize_text_field($_POST[$mBox['key']])
                     );
+                } else {
+                    if ($mBox['field_type'] == 'checkbox') {
+                        update_post_meta($post_id, $mBox['key'], '');
+                    }
                 }
             }
         }

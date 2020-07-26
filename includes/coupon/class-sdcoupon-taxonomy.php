@@ -53,7 +53,11 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
                 'update_item' => __('Update Store', 'sd_coupon_central'),
                 'add_new_item' => __('Add New Store', 'sd_coupon_central'),
                 'new_item_name' => __('New Store Name', 'sd_coupon_central'),
+                'separate_items_with_commas' => __('Separate stores with commas', 'sd_coupon_central'),
+                'not_found' => __('No stores found', 'sd_coupon_central'),
+                'choose_from_most_used' => __('Choose from the most used stores', 'sd_coupon_central'),
                 'menu_name' => __('Stores', 'sd_coupon_central'),
+                'back_to_items' => __('Back to stores', 'sd_coupon_central'),
             ];
 
             $args = [
@@ -69,6 +73,7 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
                     'with_front' => apply_filters('sdcoupon_store_taxonomy_with_front', true)
                 ],
                 'capabilities' => ['manage_categories', 'edit_posts'],
+                // 'meta_box_cb' => false
             ];
 
             register_taxonomy('sd_coupon_store', 'sd_coupon', $args);

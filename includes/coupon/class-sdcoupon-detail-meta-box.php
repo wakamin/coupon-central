@@ -6,17 +6,26 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Coupon metabox
+ * Coupon detail metabox class
  */
 if (!class_exists('SDCOUPON_Detail_Meta_Box')) {
     class SDCOUPON_Detail_Meta_Box
     {
+        /**
+         * Class constructor
+         */
         public function __construct()
         {
             add_filter('sd_coupon_detail_meta_boxes', array($this, 'coupon_detail_meta_boxes'));
         }
 
-        public function coupon_detail_meta_boxes($metaBoxes)
+        /**
+         * Add fields to coupon detail metabox
+         *
+         * @param Array $metaBoxes
+         * @return Array
+         */
+        public function coupon_detail_meta_boxes(array $metaBoxes)
         {
             $newMetaBoxes = [
                 [

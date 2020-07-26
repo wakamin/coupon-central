@@ -15,7 +15,7 @@
                     <?php endif; ?>
 
                     <?php if ($mBox['field_type'] == 'checkbox'): ?>
-                        <input type="checkbox" name="<?php echo $mBox['key'] ?>" id="<?php echo $mBox['key'] ?>" value="yes" />
+                        <input type="checkbox" name="<?php echo $mBox['key'] ?>" id="<?php echo $mBox['key'] ?>" value="yes" <?php echo get_post_meta($post->ID, $mBox['key'], true) == 'yes' ? 'checked' : '' ?> />
                     <?php endif; ?>
                 </td>
             </tr>
