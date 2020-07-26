@@ -4,7 +4,9 @@
     "description": "Build coupon site with ease.",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "gulp",
+        "build": "gulp build --prod",
+        "bundle": "gulp bundle --prod"
     },
     "author": "Kasmin",
     "license": "GPL2.0+",
@@ -13,7 +15,18 @@
         "@babel/preset-env": "^7.9.0",
         "@babel/register": "^7.9.0",
         "babel-loader": "^8.1.0",
+        "del": "^5.1.0",
         "gulp": "^4.0.2",
-        "gulp-zip": "^5.0.1"
-    }
+        "gulp-clean-css": "^4.3.0",
+        "gulp-if": "^3.0.0",
+        "gulp-imagemin": "^7.1.0",
+        "gulp-replace": "^1.0.0",
+        "gulp-sass": "^4.1.0",
+        "gulp-sourcemaps": "^2.6.5",
+        "gulp-zip": "^5.0.1",
+        "vinyl-named": "^1.1.0",
+        "webpack-stream": "^5.2.1",
+        "yargs": "^15.4.1"
+    },
+    "dependencies": {}
 }

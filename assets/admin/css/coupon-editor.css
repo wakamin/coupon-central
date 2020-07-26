@@ -1,14 +1,1 @@
-.sd-coupon-mbox-form-table {
-    width: 100%;
-}
-
-.sd-coupon-mbox-form-table tr th {
-    width: 160px;
-    padding: 5px 5px 5px 0;
-    text-align: left;
-}
-
-.sd-coupon-mbox-form-table tr th,
-.sd-coupon-mbox-form-table tr td {
-    padding: 7px 0;
-}
+.sd-coupon-mbox-form-table{width:100%}.sd-coupon-mbox-form-table tr th{width:160px;padding:5px 5px 5px 0;text-align:left}.sd-coupon-mbox-form-table tr td,.sd-coupon-mbox-form-table tr th{padding:7px 0}
