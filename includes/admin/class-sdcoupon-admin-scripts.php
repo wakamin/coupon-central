@@ -40,7 +40,7 @@ if (!class_exists('SDCOUPON_Admin_Script')) {
 
             wp_enqueue_style('sdcoupon-jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css');
             wp_enqueue_style('sdcoupon-coupon-editor', SDCOUPON_PLUGIN_URL . 'assets/admin/css/coupon-editor.css');
-            wp_enqueue_script('sdcoupon-coupon-editor-script', SDCOUPON_PLUGIN_URL . 'assets/admin/js/coupon-editor.js', array('jquery', 'jquery-ui-tabs'), '1.0.0', false);
+            wp_enqueue_script('sdcoupon-coupon-editor-script', SDCOUPON_PLUGIN_URL . 'assets/admin/js/coupon-editor.js', array('jquery', 'jquery-ui-datepicker'), '1.0.0', false);
         }
     }
     
