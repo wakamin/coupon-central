@@ -33,6 +33,8 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
             add_action('init', array($this, 'register_coupon_category_taxonomy'));
             add_action("sd_coupon_category_add_form_fields", array($this, 'add_description_field'), 10);
             add_action("sd_coupon_category_edit_form_fields", array($this, 'edit_description_field'), 10, 2);
+
+            add_filter('manage_edit-sd_coupon_category_columns', array($this, 'modify_category_column'));
         }
 
         /**
@@ -185,15 +187,34 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
 
         /**
          * Add store logo column into store list page
+         * Remove description column
          *
          * @param Array $columns
          * @return Array
          */
         public function modify_store_column(array $columns)
         {
-            unset($columns['description']);
+            $new_columns = array(
+                'cb' => '<input type="checkbox" />',
+                'name' => __('Name', 'sd_coupon_central'),
+                'sd-coupon-store-logo' => __('Logo', 'sd_coupon_central'),
+                // 'description' => __('Description', 'sd_coupon_central'),
+                'slug' => __('Slug', 'sd_coupon_central'),
+                'posts' => __('Count', 'sd_coupon_central')
+            );
 
-            $columns['sd-coupon-store-logo'] = __('Logo', 'sd_coupon_central');
+            return $new_columns;
+        }
+
+        /**
+         * Remove description column
+         *
+         * @param Array $columns
+         * @return Array
+         */
+        public function modify_category_column(array $columns)
+        {
+            unset($columns['description']);
 
             return $columns;
         }

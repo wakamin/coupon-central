@@ -6,8 +6,3 @@
 .sd-coupon-store-logo-block img {
     height: 80px;
 }
-
-.sd-coupon-store-logo-block {
-    display: flex;
-    justify-content: center;
-}
