@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
  * Coupon metabox
  */
 if (!class_exists('SDCOUPON_Meta_Box')) {
-    class SDCOUPON_Meta_Box
+    class SDCOUPON_Meta_Box implements SDCOUPON_Meta_Box_Contracts
     {
         public $couponDetailsMetaBoxes;
 
@@ -18,9 +18,9 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
          */
         public function __construct()
         {
-            add_action('save_post', array($this, 'save_coupon_meta_box'), 10, 2);
+            add_action('add_meta_boxes', array($this, 'meta_boxes'));
 
-            add_action('add_meta_boxes', array($this, 'coupon_meta_boxes'));
+            add_action('save_post', array($this, 'save_meta_box'), 10, 2);
         }
 
         /**
@@ -39,9 +39,34 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
          *
          * @return void
          */
-        private function _nonceField()
+        public function nonceField()
         {
             wp_nonce_field('sd_coupon_update_post_metabox', 'sd_coupon_update_post_nonce');
+        }
+
+        /**
+         * Add coupon metaboxes
+         *
+         * @return void
+         */
+        public function meta_boxes()
+        {
+            // Description
+            add_meta_box('sd_coupon_description', __('Description', 'sd_coupon_central'), array($this, 'description_html'), 'sd_coupon', 'normal');
+
+            // Coupon detail
+            $couponDetailsMetaBoxes = apply_filters('sd_coupon_detail_meta_boxes', []);
+
+            array_multisort(
+                array_map(function ($el) {
+                    return $el['sort_order'];
+                }, $couponDetailsMetaBoxes),
+                SORT_ASC,
+                $couponDetailsMetaBoxes
+            );
+
+            $this->setCouponDetailsMetaBoxes($couponDetailsMetaBoxes);
+            add_meta_box('sd_coupon_detail', __('Coupon Detail', 'sd_coupon_central'), array($this, 'coupon_detail_html'), 'sd_coupon', 'normal');
         }
 
         /**
@@ -51,7 +76,7 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
          * @param Object $post
          * @return void
          */
-        public function save_coupon_meta_box(Int $post_id, $post)
+        public function save_meta_box(Int $post_id, $post)
         {
             $edit_cap = get_post_type_object($post->post_type)->cap->edit_post;
             if (!current_user_can($edit_cap, $post_id)) {
@@ -86,31 +111,6 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
         }
 
         /**
-         * Add coupon metaboxes
-         *
-         * @return void
-         */
-        public function coupon_meta_boxes()
-        {
-            // Description
-            add_meta_box('sd_coupon_description', __('Description', 'sd_coupon_central'), array($this, 'description_html'), 'sd_coupon', 'normal');
-
-            // Coupon detail
-            $couponDetailsMetaBoxes = apply_filters('sd_coupon_detail_meta_boxes', []);
-
-            array_multisort(
-                array_map(function ($el) {
-                    return $el['sort_order'];
-                }, $couponDetailsMetaBoxes),
-                SORT_ASC,
-                $couponDetailsMetaBoxes
-            );
-
-            $this->setCouponDetailsMetaBoxes($couponDetailsMetaBoxes);
-            add_meta_box('sd_coupon_detail', __('Coupon Detail', 'sd_coupon_central'), array($this, 'coupon_detail_html'), 'sd_coupon', 'normal');
-        }
-
-        /**
          * Coupon description metabox html form
          *
          * @param Object $post
@@ -119,9 +119,9 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
         public function description_html($post)
         {
             $description = get_post_meta($post->ID, '_sd_coupon_description', true);
-            $this->_nonceField();
+            $this->nonceField();
 
-            include_once SDCOUPON_PLUGIN_PATH . 'views/admin/coupon/metabox/description.php';
+            include_once SDCOUPON_PLUGIN_PATH . 'views/admin/coupon/meta-box/description.php';
         }
 
         /**
@@ -132,8 +132,8 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
          */
         public function coupon_detail_html($post)
         {
-            $this->_nonceField();
-            include_once SDCOUPON_PLUGIN_PATH . 'views/admin/coupon/metabox/coupon-detail.php';
+            $this->nonceField();
+            include_once SDCOUPON_PLUGIN_PATH . 'views/admin/coupon/meta-box/coupon-detail.php';
         }
     }
     $SDCOUPON_Meta_Box = new SDCOUPON_Meta_Box();

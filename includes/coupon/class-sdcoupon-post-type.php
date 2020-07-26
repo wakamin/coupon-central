@@ -45,7 +45,7 @@ if (!class_exists('SDCOUPON_Post_Type')) {
                 'parent_item_colon' => __('Parent Coupons:', 'sd_coupon_central'),
                 'not_found' => __('No coupons found.', 'sd_coupon_central'),
                 'not_found_in_trash' => __('No coupons found in Trash.', 'sd_coupon_central'),
-                'featured_image' => __('Coupon image', 'sd_coupon_central'),
+                'featured_image' => __('Coupon Image', 'sd_coupon_central'),
                 'set_featured_image' => __('Set coupon image', 'sd_coupon_central'),
                 'remove_featured_image' => __('Remove coupon image', 'sd_coupon_central'),
                 'use_featured_image' => __('Use as coupon image', 'sd_coupon_central'),

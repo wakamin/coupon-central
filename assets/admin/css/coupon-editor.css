@@ -1,14 +1,14 @@
-.coupon-form-table {
+.sd-coupon-mbox-form-table {
     width: 100%;
 }
 
-.coupon-form-table tr th {
+.sd-coupon-mbox-form-table tr th {
     width: 160px;
     padding: 5px 5px 5px 0;
     text-align: left;
 }
 
-.coupon-form-table tr th,
-.coupon-form-table tr td {
+.sd-coupon-mbox-form-table tr th,
+.sd-coupon-mbox-form-table tr td {
     padding: 7px 0;
 }

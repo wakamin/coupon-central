@@ -1,4 +1,4 @@
-<table class="coupon-form-table" role="presentation">
+<table class="sd-coupon-mbox-form-table" role="presentation">
     <tbody>
         <?php foreach ($this->couponDetailsMetaBoxes as $mBox): ?>
             <tr>
