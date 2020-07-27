@@ -54,6 +54,12 @@ if (!class_exists('SDCOUPON_Detail_Meta_Box')) {
                     'field_type' => 'checkbox',
                     'sort_order' => 40
                 ],
+                [
+                    'key' => '_sd_coupon_image',
+                    'name' => __('Coupon Image', 'sd_coupon_central'),
+                    'field_type' => 'media',
+                    'sort_order' => 50
+                ],
             ];
             
             return array_merge($metaBoxes, $newMetaBoxes);

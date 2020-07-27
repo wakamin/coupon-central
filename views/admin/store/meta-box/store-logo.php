@@ -1,6 +1,6 @@
 <fieldset>
-    <div class="store-logo-box">
-        <div class="logo-preview<?php echo !$logo ? ' sd-coupon-hide' : '' ?>">
+    <div>
+        <div class="logo-preview<?php echo !$logo ? ' sdcc-hide' : '' ?>">
             <img id="sd_coupon_store_logo_preview" src="<?php echo esc_attr($logo) ?>">
         </div>
 

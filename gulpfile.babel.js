@@ -16,18 +16,11 @@ const PRODUCTION = yargs.argv.prod;
 
 const paths = {
     styles: {
-        src: [
-            "src/assets/admin/scss/coupon-central.scss",
-            "src/assets/admin/scss/coupon-editor.scss",
-            "src/assets/admin/scss/store-editor.scss",
-        ],
+        src: ["src/assets/admin/scss/coupon-central.scss"],
         dest: "assets/admin/css",
     },
     scripts: {
-        src: [
-            "src/assets/admin/js/coupon-editor.js",
-            "src/assets/admin/js/store-editor.js",
-        ],
+        src: ["src/assets/admin/js/coupon-central.js"],
         dest: "assets/admin/js",
     },
     other: {

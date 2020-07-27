@@ -148,7 +148,7 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
          */
         public function add_store_logo_field()
         {
-            $logo = false; ?>
+            $value = false; ?>
 
             <div class="form-field term-store-logo-wrap">
                 <label><?php _e('Store Logo', 'sd_coupon_central') ?></label>
@@ -166,7 +166,7 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
          */
         public function edit_store_logo_field($term, String $taxonomy)
         {
-            $logo = $this->get_store_logo($term->term_id); ?>
+            $value = $this->get_store_logo($term->term_id); ?>
             <tr class="form-field sd-coupon-store-logo-wrap">
                 <th scope="row"><label for="sd-coupon-store-logo"><?php _e('Store Logo', 'sd_coupon_central'); ?></label></th>
                 <td>
@@ -236,7 +236,7 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
         {
             if ($column_name == 'sd-coupon-store-logo') {
                 $logo  = $this->get_store_logo($term_id);
-                $out = sprintf('<span class="sd-coupon-store-logo-block" style="" ><img src="%s" /></div>', esc_attr($logo));
+                $out = sprintf('<span class="sdcc-store-logo-block"><img src="%s" /></div>', esc_attr($logo));
             }
             
             return $out;

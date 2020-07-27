@@ -90,6 +90,7 @@ if (!class_exists('SDCOUPON_Post_Type')) {
          */
         public function control_coupon_post_ui()
         {
+            // remove_post_type_support('sd_coupon', 'editor');
             add_post_type_support('sd_coupon', 'thumbnail');
             add_post_type_support('sd_coupon', 'author');
             add_post_type_support('sd_coupon', 'comments');

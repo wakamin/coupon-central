@@ -1,3 +1,46 @@
-.sd-coupon-hide {
+.sdcc-hide {
     display: none !important;
+}
+
+.sdcc-text-danger {
+    color: #dc3232 !important;
+}
+
+.sdcc-mbox-form-table {
+    width: 100%;
+
+    tr {
+        th {
+            width: 160px;
+            padding: 5px 5px 5px 0;
+            text-align: left;
+        }
+
+        th,
+        td {
+            padding: 7px 0;
+        }
+    }
+}
+
+.sdcc-media {
+    &__image-preview-wrapper {
+        margin-bottom: 10px;
+
+        img {
+            height: auto;
+            max-width: 200px;
+        }
+    }
+
+    &__remove-wrapper {
+        margin-top: 10px;
+    }
+}
+
+.sdcc-store-logo-block {
+    img {
+        height: auto;
+        max-width: 150px;
+    }
 }
