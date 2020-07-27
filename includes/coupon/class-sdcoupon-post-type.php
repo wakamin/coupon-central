@@ -18,8 +18,6 @@ if (!class_exists('SDCOUPON_Post_Type')) {
         {
             add_action('init', array($this, 'register_coupon_post_type'));
 
-            add_filter('use_block_editor_for_post_type', array($this, 'disable_block_editor'), 10, 2);
-
             add_action('init', array($this, 'control_coupon_post_ui'));
         }
 
@@ -45,10 +43,6 @@ if (!class_exists('SDCOUPON_Post_Type')) {
                 'parent_item_colon' => __('Parent Coupons:', 'sd_coupon_central'),
                 'not_found' => __('No coupons found.', 'sd_coupon_central'),
                 'not_found_in_trash' => __('No coupons found in Trash.', 'sd_coupon_central'),
-                'featured_image' => __('Coupon Image', 'sd_coupon_central'),
-                'set_featured_image' => __('Set coupon image', 'sd_coupon_central'),
-                'remove_featured_image' => __('Remove coupon image', 'sd_coupon_central'),
-                'use_featured_image' => __('Use as coupon image', 'sd_coupon_central'),
                 'archives' => _x('Coupon archives', 'The post type archive label used in nav menus.', 'sd_coupon_central'),
                 'insert_into_item' => _x('Insert into coupon', 'Used when inserting media', 'sd_coupon_central'),
                 'uploaded_to_this_item' => _x('Uploaded to this coupon', 'Used when viewing media attached to a post', 'sd_coupon_central'),
@@ -73,10 +67,12 @@ if (!class_exists('SDCOUPON_Post_Type')) {
                 'hierarchical' => false,
                 'menu_position ' => 6,
                 'supports ' => [
+                    'thumbnail',
                     'author',
                     'comments',
                     'custom-fields',
                     'revisions',
+                    'excerpt'
                 ],
                 'show_in_rest' => true,
                 'show_in_admin_bar' => true,
@@ -88,33 +84,18 @@ if (!class_exists('SDCOUPON_Post_Type')) {
         }
 
         /**
-         * Disable block editor from Coupon post type
-         *
-         * @param Bool $current_status
-         * @param String $post_type
-         * @return Bool
-         */
-        public function disable_block_editor(Bool $current_status, String $post_type)
-        {
-            if ($post_type === 'sd_coupon') {
-                return false;
-            }
-            return $current_status;
-        }
-
-        /**
          * Control coupon post UI
          *
          * @return void
          */
         public function control_coupon_post_ui()
         {
-            remove_post_type_support('sd_coupon', 'editor');
             add_post_type_support('sd_coupon', 'thumbnail');
             add_post_type_support('sd_coupon', 'author');
             add_post_type_support('sd_coupon', 'comments');
             add_post_type_support('sd_coupon', 'custom-fields');
             add_post_type_support('sd_coupon', 'revisions');
+            add_post_type_support('sd_coupon', 'excerpt');
         }
     }
 

@@ -63,9 +63,6 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
          */
         public function meta_boxes()
         {
-            // Description
-            add_meta_box('sd_coupon_description', __('Description', 'sd_coupon_central'), array($this, 'description_html'), 'sd_coupon', 'normal');
-
             // Coupon detail
             $couponDetailsMetaBoxes = $this->couponDetailsMetaBoxes;
 
@@ -99,19 +96,9 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
             ) {
                 return;
             }
-    
-            // Update description
-            if (array_key_exists('sd_coupon_description', $_POST)) {
-                update_post_meta(
-                    $post_id,
-                    '_sd_coupon_description',
-                    sanitize_text_field($_POST['sd_coupon_description'])
-                );
-            }
-
 
             foreach ($this->couponDetailsMetaBoxes as $mBox) {
-                // Update meta box
+                // Update meta box coupon details
                 if (array_key_exists($mBox['key'], $_POST)) {
                     update_post_meta(
                         $post_id,
@@ -124,20 +111,6 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
                     }
                 }
             }
-        }
-
-        /**
-         * Coupon description metabox html form
-         *
-         * @param Object $post
-         * @return Html view
-         */
-        public function description_html($post)
-        {
-            $description = get_post_meta($post->ID, '_sd_coupon_description', true);
-            $this->nonceField();
-
-            include_once SDCOUPON_PLUGIN_PATH . 'views/admin/coupon/meta-box/description.php';
         }
 
         /**
