@@ -6,7 +6,8 @@
 get_header();
 
 $term_id = get_queried_object_id();
-$logo_url = get_term_meta($term_id, '_sd_coupon_store_logo', true);
+$logo_url = esc_url(get_term_meta($term_id, '_sd_coupon_store_logo', true));
+$short_description = wpautop(wp_kses_post(get_term_meta($term_id, '_sd_coupon_store_short_description', true)));
 $store_name = get_the_archive_title();
 ?>
 
@@ -14,9 +15,12 @@ $store_name = get_the_archive_title();
 
     <header class="sdcc-archive__header sdcc-archive__header--store">
         <div class="sdcc-store-logo">
-            <img src="<?php echo esc_url($logo_url) ?>" alt="<?php echo esc_attr($store_name) ?>" />
+            <img src="<?php echo $logo_url ?>" alt="<?php echo esc_attr($store_name) ?>" />
         </div>
+
         <h1 class="sdcc-archive__title"><?php echo get_the_archive_title() ?></h1>
+
+        <div class="sdcc-archive__short-desc"><?php echo $short_description ?></div>
     </header>
 
     <div class="sdcc-archive__content">
