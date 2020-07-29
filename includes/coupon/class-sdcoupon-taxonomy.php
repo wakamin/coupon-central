@@ -24,7 +24,6 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
             add_action("sd_coupon_store_add_form_fields", array($this, 'add_store_short_desc_field'), 2);
             add_action("sd_coupon_store_edit_form_fields", array($this, 'edit_store_short_desc_field'), 2, 2);
 
-            add_action("sd_coupon_store_add_form_fields", array($this, 'add_description_field'), 10);
             add_action("sd_coupon_store_edit_form_fields", array($this, 'edit_description_field'), 10, 2);
 
             add_action('create_sd_coupon_store', array($this, 'save_store'));
@@ -35,7 +34,6 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
 
             // Coupon category taxonomy
             add_action('init', array($this, 'register_coupon_category_taxonomy'));
-            add_action("sd_coupon_category_add_form_fields", array($this, 'add_description_field'), 10);
             add_action("sd_coupon_category_edit_form_fields", array($this, 'edit_description_field'), 10, 2);
 
             add_filter('manage_edit-sd_coupon_category_columns', array($this, 'modify_category_column'));
@@ -86,26 +84,6 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
             ];
 
             register_taxonomy('sd_coupon_store', 'sd_coupon', $args);
-        }
-
-        /**
-         * Replace add description field using WYSIWYG editor
-         *
-         * @return void
-         */
-        public function add_description_field()
-        {
-            ?>
-            <div class="form-field term-description-wysiwyg-wrap">
-                <label for="description"><?php _e('Description', 'sd_coupon_central') ?></label>
-                <?php wp_editor(html_entity_decode(''), 'description', array('media_buttons' => true)); ?>
-                <script>
-                    jQuery(window).ready(function($){
-                        $('.term-description-wrap').remove();
-                    });
-                </script>
-            </div>
-            <?php
         }
 
         /**
@@ -176,9 +154,11 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
         public function add_store_short_desc_field()
         {
             $this->get_nonce(); ?>
-            <div class="form-field term-short-description-wysiwyg-wrap">
-                <label for="short_description"><?php _e('Short Description', 'sd_coupon_central') ?></label>
-                <?php wp_editor(html_entity_decode(''), '_sd_coupon_store_short_description', array('media_buttons' => false)); ?>
+
+            <div class="form-field term-short-description-wrap">
+            <label for="sd_coupon_store_short_description"><?php _e('Short Description', 'sd_coupon_central') ?></label>
+                <textarea name="sd_coupon_store_short_description" id="sd_coupon_store_short_description" rows="5" cols="40"></textarea>
+                <p><?php _e('The short description of the store.', 'sd_coupon_central') ?></p>
             </div>
             <?php
         }
@@ -196,7 +176,7 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
                 <tr valign="top">
                     <th scope="row"><?php _e('Short Description', 'sd_coupon_central') ?></th>
                     <td>
-                        <?php wp_editor(html_entity_decode($this->get_store_short_description($term->term_id)), '_sd_coupon_store_short_description', array('media_buttons' => false)); ?>
+                        <?php wp_editor(html_entity_decode($this->get_store_short_description($term->term_id)), 'sd_coupon_store_short_description', array('media_buttons' => false)); ?>
                     </td>
                 </tr>
             <?php
@@ -343,7 +323,7 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
 
             // Update short description
             $oldShortDesc  = $this->get_store_short_description($termId);
-            $newShortDesc = isset($_POST['_sd_coupon_store_short_description']) ? wp_kses_post($_POST['_sd_coupon_store_short_description']) : '';
+            $newShortDesc = isset($_POST['sd_coupon_store_short_description']) ? wp_kses_post($_POST['sd_coupon_store_short_description']) : '';
 
             if ($oldShortDesc !== $newShortDesc) {
                 update_term_meta($termId, '_sd_coupon_store_short_description', $newShortDesc);
