@@ -1,7 +1,5 @@
 <?php
 
-wp_nonce_field('sd_coupon_store_logo_field', 'sd_coupon_store_logo_nonce');
-
 $targetPreview = 'sdcc-store-logo-preview';
 $targetInput = 'sdcc-store-logo-input';
 sdcc_render_media_button($targetPreview, $targetInput, $value);

@@ -15,10 +15,14 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
         {
             // Store taxonomy
             add_action('init', array($this, 'register_store_taxonomy'));
-            add_action('init', array($this, 'register_store_logo_field'));
+            add_action('init', array($this, 'register_store_logo_meta'));
+            add_action('init', array($this, 'register_store_short_description_meta'));
 
             add_action("sd_coupon_store_add_form_fields", array($this, 'add_store_logo_field'), 2);
             add_action("sd_coupon_store_edit_form_fields", array($this, 'edit_store_logo_field'), 2, 2);
+
+            add_action("sd_coupon_store_add_form_fields", array($this, 'add_store_short_desc_field'), 2);
+            add_action("sd_coupon_store_edit_form_fields", array($this, 'edit_store_short_desc_field'), 2, 2);
 
             add_action("sd_coupon_store_add_form_fields", array($this, 'add_description_field'), 10);
             add_action("sd_coupon_store_edit_form_fields", array($this, 'edit_description_field'), 10, 2);
@@ -35,6 +39,11 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
             add_action("sd_coupon_category_edit_form_fields", array($this, 'edit_description_field'), 10, 2);
 
             add_filter('manage_edit-sd_coupon_category_columns', array($this, 'modify_category_column'));
+        }
+
+        public function get_nonce()
+        {
+            return wp_nonce_field('sd_coupon_store_form', 'sd_coupon_store_nonce');
         }
 
         /**
@@ -128,7 +137,7 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
          *
          * @return void
          */
-        public function register_store_logo_field()
+        public function register_store_logo_meta()
         {
             $args = [
                 'object_subtype' => 'sd_coupon_store',
@@ -142,12 +151,65 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
         }
 
         /**
+         * Register store short description field
+         *
+         * @return void
+         */
+        public function register_store_short_description_meta()
+        {
+            $args = [
+                'object_subtype' => 'sd_coupon_store',
+                'show_in_rest' => true,
+                'type' => 'string',
+                'single' => true,
+                'sanitize_callback' => 'wp_kses_post',
+            ];
+
+            register_meta('term', '_sd_coupon_store_short_description', $args);
+        }
+
+        /**
+         * Add store short description field
+         *
+         * @return WYSIWYG editor
+         */
+        public function add_store_short_desc_field()
+        {
+            $this->get_nonce(); ?>
+            <div class="form-field term-short-description-wysiwyg-wrap">
+                <label for="short_description"><?php _e('Short Description', 'sd_coupon_central') ?></label>
+                <?php wp_editor(html_entity_decode(''), '_sd_coupon_store_short_description', array('media_buttons' => false)); ?>
+            </div>
+            <?php
+        }
+
+        /**
+         * Add store short description field into edit store page
+         *
+         * @param Object $term
+         * @param String $taxonomy
+         * @return WYSIWYG editor
+         */
+        public function edit_store_short_desc_field($term, String $taxonomy)
+        {
+            $this->get_nonce(); ?>
+                <tr valign="top">
+                    <th scope="row"><?php _e('Short Description', 'sd_coupon_central') ?></th>
+                    <td>
+                        <?php wp_editor(html_entity_decode($this->get_store_short_description($term->term_id)), '_sd_coupon_store_short_description', array('media_buttons' => false)); ?>
+                    </td>
+                </tr>
+            <?php
+        }
+
+        /**
          * Add store logo field on store taxonomy page
          *
          * @return void
          */
         public function add_store_logo_field()
         {
+            $this->get_nonce();
             $value = false; ?>
 
             <div class="form-field term-store-logo-wrap">
@@ -166,6 +228,7 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
          */
         public function edit_store_logo_field($term, String $taxonomy)
         {
+            $this->get_nonce();
             $value = $this->get_store_logo($term->term_id); ?>
             <tr class="form-field sd-coupon-store-logo-wrap">
                 <th scope="row"><label for="sd-coupon-store-logo"><?php _e('Store Logo', 'sd_coupon_central'); ?></label></th>
@@ -179,15 +242,29 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
         /**
          * Get store logo URL
          *
-         * @param Int $termId
+         * @param Int $term_id
          * @return String
          */
-        public function get_store_logo(Int $termId)
+        public function get_store_logo(Int $term_id)
         {
-            $logo = get_term_meta($termId, '_sd_coupon_store_logo', true);
+            $logo = get_term_meta($term_id, '_sd_coupon_store_logo', true);
             $logo = esc_url_raw($logo);
 
             return $logo;
+        }
+
+        /**
+         * Get store short description
+         *
+         * @param Int $term_id
+         * @return String
+         */
+        public function get_store_short_description(Int $term_id)
+        {
+            $short_description = get_term_meta($term_id, '_sd_coupon_store_short_description', true);
+            $short_description = wp_kses_post($short_description);
+
+            return $short_description;
         }
 
         /**
@@ -250,17 +327,26 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
          */
         public function save_store(Int $termId)
         {
-            if (!isset($_POST['sd_coupon_store_logo_nonce']) ||
-                !wp_verify_nonce($_POST['sd_coupon_store_logo_nonce'], 'sd_coupon_store_logo_field')
+            if (!isset($_POST['sd_coupon_store_nonce']) ||
+                !wp_verify_nonce($_POST['sd_coupon_store_nonce'], 'sd_coupon_store_form')
             ) {
                 return;
             }
 
+            // Update logo
             $oldLogo  = $this->get_store_logo($termId);
             $newLogo = isset($_POST['sd_coupon_store_logo']) ? esc_url_raw($_POST['sd_coupon_store_logo']) : '';
 
             if ($oldLogo !== $newLogo) {
                 update_term_meta($termId, '_sd_coupon_store_logo', $newLogo);
+            }
+
+            // Update short description
+            $oldShortDesc  = $this->get_store_short_description($termId);
+            $newShortDesc = isset($_POST['_sd_coupon_store_short_description']) ? wp_kses_post($_POST['_sd_coupon_store_short_description']) : '';
+
+            if ($oldShortDesc !== $newShortDesc) {
+                update_term_meta($termId, '_sd_coupon_store_short_description', $newShortDesc);
             }
         }
 
