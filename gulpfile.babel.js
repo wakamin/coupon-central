@@ -4,6 +4,7 @@ import sass from "gulp-sass";
 import cleanCss from "gulp-clean-css";
 import gulpif from "gulp-if";
 import sourcemaps from "gulp-sourcemaps";
+import imagemin from "gulp-imagemin";
 import del from "del";
 import webpack from "webpack-stream";
 import named from "vinyl-named";
@@ -19,6 +20,10 @@ const paths = {
             "src/assets/scss/frontend-coupon-central.scss",
         ],
         dest: "assets/css",
+    },
+    images: {
+        src: "src/assets/images/**/*.{jpg,png,jpeg,svg,gif}",
+        dest: "assets/images",
     },
     scripts: {
         src: [
@@ -66,9 +71,17 @@ export const styles = () => {
         .pipe(gulp.dest(paths.styles.dest));
 };
 
+export const images = () => {
+    return gulp
+        .src(paths.images.src)
+        .pipe(gulpif(PRODUCTION, imagemin()))
+        .pipe(gulp.dest(paths.images.dest));
+};
+
 export const watch = () => {
     gulp.watch("src/assets/scss/**/*.scss", styles);
     gulp.watch("src/assets/js/**/*.js", scripts);
+    gulp.watch(paths.images.src, gulp.series(images));
     gulp.watch(paths.other.src, copy);
 };
 
@@ -117,11 +130,14 @@ export const compress = () => {
 
 export const dev = gulp.series(
     clean,
-    gulp.parallel(styles, scripts, copy),
+    gulp.parallel(styles, scripts, images, copy),
     watch,
 );
 
-export const build = gulp.series(clean, gulp.parallel(styles, scripts, copy));
+export const build = gulp.series(
+    clean,
+    gulp.parallel(styles, scripts, images, copy),
+);
 
 export const bundle = gulp.series(build, compress);
 

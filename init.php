@@ -34,3 +34,9 @@ include_once SDCOUPON_PLUGIN_PATH . 'includes/frontend/class-sdcoupon-frontend-s
 
 // Coupon archive template
 include_once SDCOUPON_PLUGIN_PATH . 'includes/frontend/class-sdcoupon-coupon-archive.php';
+
+// Store service
+include_once SDCOUPON_PLUGIN_PATH . 'includes/services/class-sdcoupon-store-service.php';
+
+// Store functions
+include_once SDCOUPON_PLUGIN_PATH . 'includes/functions/store-functions.php';

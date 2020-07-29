@@ -5,34 +5,28 @@
 
 get_header();
 
-$term_id = get_queried_object_id();
-$logo_url = esc_url(get_term_meta($term_id, '_sd_coupon_store_logo', true));
-$short_description = wpautop(wp_kses_post(get_term_meta($term_id, '_sd_coupon_store_short_description', true)));
-$store_name = get_the_archive_title();
+// Get store ID, store term ID
+$storeId = get_queried_object_id();
+$store = sdcc_store_data($storeId);
 ?>
 
 <main class="sdcc-archive">
 
     <header class="sdcc-archive__header sdcc-archive__header--store">
         <div class="sdcc-store-logo">
-            <img src="<?php echo $logo_url ?>" alt="<?php echo esc_attr($store_name) ?>" />
+            <img src="<?php echo sdcc_store_logo($storeId) ?>" alt="<?php echo esc_attr($store->name) ?>" />
         </div>
 
         <h1 class="sdcc-archive__title"><?php echo get_the_archive_title() ?></h1>
 
-        <div class="sdcc-archive__short-desc"><?php echo $short_description ?></div>
+        <div class="sdcc-archive__short-desc"><?php echo sdcc_store_short_description($storeId) ?></div>
     </header>
 
     <div class="sdcc-archive__content">
         <div class="sdcc-archive__coupon-list">
             <?php
                 if (have_posts()) {
-                    $i = 0;
                     while (have_posts()) {
-                        $i++;
-                        if ($i > 1) {
-                            echo '<hr class="post-separator styled-separator is-style-wide section-inner" aria-hidden="true" />';
-                        }
                         the_post();
 
                         get_template_part('template-parts/content', get_post_type());
