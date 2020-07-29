@@ -4,30 +4,34 @@ import sass from "gulp-sass";
 import cleanCss from "gulp-clean-css";
 import gulpif from "gulp-if";
 import sourcemaps from "gulp-sourcemaps";
-import imagemin from "gulp-imagemin";
 import del from "del";
 import webpack from "webpack-stream";
 import named from "vinyl-named";
 import zip from "gulp-zip";
-import replace from "gulp-replace";
 import info from "./package.json";
 
 const PRODUCTION = yargs.argv.prod;
 
 const paths = {
     styles: {
-        src: ["src/assets/admin/scss/coupon-central.scss"],
-        dest: "assets/admin/css",
+        src: [
+            "src/assets/scss/admin-coupon-central.scss",
+            "src/assets/scss/frontend-coupon-central.scss",
+        ],
+        dest: "assets/css",
     },
     scripts: {
-        src: ["src/assets/admin/js/coupon-central.js"],
-        dest: "assets/admin/js",
+        src: [
+            "src/assets/js/admin-coupon-central.js",
+            "src/assets/js/frontend-coupon-central.js",
+        ],
+        dest: "assets/js",
     },
     other: {
         src: [
-            "src/assets/**/**/*",
-            "!src/assets/admin/{images,js,scss}",
-            "!src/assets/admin/{images,js,scss}/**/*",
+            "src/assets/**/*",
+            "!src/assets/{images,js,scss}",
+            "!src/assets/{images,js,scss}/**/*",
         ],
         dest: "assets",
     },
@@ -63,8 +67,8 @@ export const styles = () => {
 };
 
 export const watch = () => {
-    gulp.watch("src/assets/admin/scss/**/*.scss", styles);
-    gulp.watch("src/assets/admin/js/**/*.js", scripts);
+    gulp.watch("src/assets/scss/**/*.scss", styles);
+    gulp.watch("src/assets/js/**/*.js", scripts);
     gulp.watch(paths.other.src, copy);
 };
 

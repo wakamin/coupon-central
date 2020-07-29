@@ -28,3 +28,9 @@ include_once SDCOUPON_PLUGIN_PATH . 'includes/coupon/class-sdcoupon-detail-meta-
 
 // Admin Scripts
 include_once SDCOUPON_PLUGIN_PATH . 'includes/admin/class-sdcoupon-admin-scripts.php';
+
+// Frontend Scripts
+include_once SDCOUPON_PLUGIN_PATH . 'includes/frontend/class-sdcoupon-frontend-scripts.php';
+
+// Coupon archive template
+include_once SDCOUPON_PLUGIN_PATH . 'includes/frontend/class-sdcoupon-coupon-archive.php';
