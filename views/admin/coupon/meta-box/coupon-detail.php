@@ -1,3 +1,12 @@
+<?php
+
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit();
+}
+
+?>
+
 <table class="sdcc-mbox-form-table" role="presentation">
     <tbody>
         <?php foreach ($this->couponDetailsMetaBoxes as $mBox): ?>

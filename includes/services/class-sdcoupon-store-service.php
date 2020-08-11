@@ -29,7 +29,7 @@ if (!class_exists('SDCOUPON_Store_Service')) {
         }
 
         /**
-         * Get store adata
+         * Get store data
          *
          * @return Object
          */

@@ -19,7 +19,7 @@ $store = sdcc_store_data($storeId);
 
         <h1 class="sdcc-archive__title"><?php echo get_the_archive_title() ?></h1>
 
-        <div class="sdcc-archive__short-desc"><?php echo sdcc_store_short_description($storeId) ?></div>
+        <div class="sdcc-archive__short-desc"><?php echo $store->short_description ?></div>
     </header>
 
     <div class="sdcc-archive__content">
@@ -28,8 +28,7 @@ $store = sdcc_store_data($storeId);
                 if (have_posts()) {
                     while (have_posts()) {
                         the_post();
-
-                        get_template_part('template-parts/content', get_post_type());
+                        include_once SDCOUPON_PLUGIN_PATH . 'views/frontend/coupon/coupon-card.php';
                     }
                 }
             ?>
