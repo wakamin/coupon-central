@@ -7,6 +7,7 @@
     box-shadow: $boxShadow;
     transition: all .25s ease-in;
     position: relative;
+    margin-bottom: 30px;
 
     &--list {}
 
@@ -41,7 +42,7 @@
         height: 40px;
         padding: 15px;
         background: rgb(255, 255, 255);
-        background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 35%, rgba(255, 255, 255, 0.58) 100%);
+        background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 0.58) 100%);
         text-align: right;
         font-size: 13px;
     }

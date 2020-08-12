@@ -28,7 +28,9 @@ $store = sdcc_store_data($storeId);
                 if (have_posts()) {
                     while (have_posts()) {
                         the_post();
-                        include_once SDCOUPON_PLUGIN_PATH . 'views/frontend/coupon/coupon-card.php';
+                        // get_template_part('template-parts/content', get_post_type());
+
+                        include SDCOUPON_PLUGIN_PATH . 'views/frontend/coupon/coupon-card.php';
                     }
                 }
             ?>

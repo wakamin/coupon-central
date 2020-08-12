@@ -1,18 +1,22 @@
 import $ from "jquery";
 
 $(document).ready(function () {
-    let sdcc_card_els = {
-        show_excerpt: $(".sdcc-card__excerpt-show"),
+    let sdcc_card = {
+        els: {
+            show_excerpt: $(".sdcc-card__excerpt-show"),
+        },
+        data: {},
     };
 
-    let sdcc_card_data = {};
-
-    sdcc_card_els.show_excerpt.on("click", function () {
+    sdcc_card.els.show_excerpt.on("click", function () {
         let type = $(this).attr("data-type");
+        let excerpt_el = $(this).parent(".sdcc-card__excerpt");
+        let title_el = excerpt_el.prev(".sdcc-card__title");
 
         if (type == "more") {
-            let height = $(this).parent(".sdcc-card__excerpt").height();
-            height = height + 85;
+            let excerpt_height = excerpt_el.height();
+            let title_height = title_el.height();
+            let height = excerpt_height + title_height + 70;
             $(this)
                 .closest(".sdcc-card")
                 .css({ height: `${height}px` });
