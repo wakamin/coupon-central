@@ -6,21 +6,40 @@
 get_header();
 
 // Get store ID, store term ID
-$storeId = get_queried_object_id();
-$store = sdcc_store_data($storeId);
+$termId = get_queried_object_id();
+$qryObject = get_queried_object();
+$taxonomy = $qryObject->taxonomy;
 ?>
 
 <main class="sdcc-archive">
 
-    <header class="sdcc-archive__header sdcc-archive__header--store">
-        <div class="sdcc-store-logo">
-            <img src="<?php echo sdcc_store_logo($storeId) ?>" alt="<?php echo esc_attr($store->name) ?>" />
-        </div>
+    <?php if ($taxonomy == 'sd_coupon_store'): ?>
+        <?php $store = sdcc_store_data($termId); ?>
+        
+        <header class="sdcc-archive__header sdcc-archive__header--store">
+            <div class="sdcc-store-logo">
+                <img src="<?php echo sdcc_store_logo($termId) ?>" alt="<?php echo esc_attr($store->name) ?>" />
+            </div>
 
-        <h1 class="sdcc-archive__title"><?php echo get_the_archive_title() ?></h1>
+            <h1 class="sdcc-archive__title"><?php echo get_the_archive_title() ?></h1>
 
-        <div class="sdcc-archive__short-desc"><?php echo $store->short_description ?></div>
-    </header>
+            <div class="sdcc-archive__short-desc"><?php echo $store->short_description ?></div>
+        </header>
+    <?php endif; ?>
+
+    <?php if ($taxonomy == 'sd_coupon_category'): ?>
+        <?php $category = sdcc_category_data($termId); ?>
+        
+        <header class="sdcc-archive__header sdcc-archive__header--category">
+            <div class="sdcc-category-logo">
+                <img src="<?php echo sdcc_category_icon($termId) ?>" alt="<?php echo esc_attr($category->name) ?>" />
+            </div>
+
+            <h1 class="sdcc-archive__title"><?php echo get_the_archive_title() ?></h1>
+
+            <div class="sdcc-archive__short-desc"><?php echo $category->short_description ?></div>
+        </header>
+    <?php endif; ?>
 
     <div class="sdcc-archive__content">
         <div class="sdcc-archive__coupon-list">

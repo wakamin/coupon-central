@@ -38,11 +38,17 @@ include_once SDCOUPON_PLUGIN_PATH . 'includes/frontend/class-sdcoupon-coupon-arc
 // Store service
 include_once SDCOUPON_PLUGIN_PATH . 'includes/services/class-sdcoupon-store-service.php';
 
+// Category service
+include_once SDCOUPON_PLUGIN_PATH . 'includes/services/class-sdcoupon-category-service.php';
+
 // Coupon service
 include_once SDCOUPON_PLUGIN_PATH . 'includes/services/class-sdcoupon-coupon-service.php';
 
 // Store functions
 include_once SDCOUPON_PLUGIN_PATH . 'includes/functions/store-functions.php';
+
+// Category functions
+include_once SDCOUPON_PLUGIN_PATH . 'includes/functions/coupon-category-functions.php';
 
 // Coupon functions
 include_once SDCOUPON_PLUGIN_PATH . 'includes/functions/coupon-functions.php';

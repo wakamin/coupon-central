@@ -34,14 +34,27 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
 
             // Coupon category taxonomy
             add_action('init', array($this, 'register_coupon_category_taxonomy'));
+            add_action('init', array($this, 'register_coupon_category_icon_meta'));
+            add_action('init', array($this, 'register_coupon_category_short_description_meta'));
+
+            add_action("sd_coupon_category_add_form_fields", array($this, 'add_coupon_category_icon_field'), 2);
+            add_action("sd_coupon_category_edit_form_fields", array($this, 'edit_coupon_category_icon_field'), 2, 2);
+
+            add_action("sd_coupon_category_add_form_fields", array($this, 'add_coupon_category_short_desc_field'), 2);
+            add_action("sd_coupon_category_edit_form_fields", array($this, 'edit_coupon_category_short_desc_field'), 2, 2);
+
             add_action("sd_coupon_category_edit_form_fields", array($this, 'edit_description_field'), 10, 2);
 
+            add_action('create_sd_coupon_category', array($this, 'save_category'));
+            add_action('edit_sd_coupon_category', array($this, 'save_category'));
+
             add_filter('manage_edit-sd_coupon_category_columns', array($this, 'modify_category_column'));
+            add_filter('manage_sd_coupon_category_custom_column', array($this, 'render_category_icon_column'), 10, 3);
         }
 
         public function get_nonce()
         {
-            return wp_nonce_field('sd_coupon_store_form', 'sd_coupon_store_nonce');
+            return wp_nonce_field('sd_coupon_form', 'sd_coupon_nonce');
         }
 
         /**
@@ -269,16 +282,23 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
         }
 
         /**
-         * Remove description column
+         * Modify coupon category column
          *
          * @param Array $columns
          * @return Array
          */
         public function modify_category_column(array $columns)
         {
-            unset($columns['description']);
+            $new_columns = array(
+                'cb' => '<input type="checkbox" />',
+                'name' => __('Name', 'sd_coupon_central'),
+                'sd-coupon-category-icon' => __('Icon', 'sd_coupon_central'),
+                // 'description' => __('Description', 'sd_coupon_central'),
+                'slug' => __('Slug', 'sd_coupon_central'),
+                'posts' => __('Count', 'sd_coupon_central')
+            );
 
-            return $columns;
+            return $new_columns;
         }
 
         /**
@@ -307,8 +327,8 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
          */
         public function save_store(Int $termId)
         {
-            if (!isset($_POST['sd_coupon_store_nonce']) ||
-                !wp_verify_nonce($_POST['sd_coupon_store_nonce'], 'sd_coupon_store_form')
+            if (!isset($_POST['sd_coupon_nonce']) ||
+                !wp_verify_nonce($_POST['sd_coupon_nonce'], 'sd_coupon_form')
             ) {
                 return;
             }
@@ -367,6 +387,192 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
             ];
 
             register_taxonomy('sd_coupon_category', 'sd_coupon', $args);
+        }
+
+        /**
+         * Register coupon category icon field
+         *
+         * @return void
+         */
+        public function register_coupon_category_icon_meta()
+        {
+            $args = [
+                'object_subtype' => 'sd_coupon_category',
+                'show_in_rest' => true,
+                'type' => 'string',
+                'single' => true,
+                'sanitize_callback' => 'esc_url_raw',
+            ];
+
+            register_meta('term', '_sd_coupon_category_icon', $args);
+        }
+
+        /**
+         * Register coupon category short description field
+         *
+         * @return void
+         */
+        public function register_coupon_category_short_description_meta()
+        {
+            $args = [
+                'object_subtype' => 'sd_coupon_category',
+                'show_in_rest' => true,
+                'type' => 'string',
+                'single' => true,
+                'sanitize_callback' => 'wp_kses_post',
+            ];
+
+            register_meta('term', '_sd_coupon_category_short_description', $args);
+        }
+
+        /**
+         * Add coupon category icon field on coupon category taxonomy page
+         *
+         * @return void
+         */
+        public function add_coupon_category_icon_field()
+        {
+            $this->get_nonce();
+            $value = false; ?>
+
+            <div class="form-field term-coupon_category-icon-wrap">
+                <label><?php _e('Icon Image', 'sd_coupon_central') ?></label>
+                <?php include_once SDCOUPON_PLUGIN_PATH . 'views/admin/coupon/taxonomy/category/category-icon-field.php'; ?>
+            </div>
+            <?php
+        }
+
+        /**
+         * Add coupon category icon field on edit coupon category page
+         *
+         * @param Object $term
+         * @param String $taxonomy
+         * @return void
+         */
+        public function edit_coupon_category_icon_field($term, String $taxonomy)
+        {
+            $this->get_nonce();
+            $value = $this->get_category_icon($term->term_id); ?>
+            <tr class="form-field sd-coupon-category-icon-wrap">
+                <th scope="row"><label for="sd-coupon-category-icon"><?php _e('Icon Image', 'sd_coupon_central'); ?></label></th>
+                <td>
+                    <?php include_once SDCOUPON_PLUGIN_PATH . 'views/admin/coupon/taxonomy/category/category-icon-field.php'; ?>
+                </td>
+            </tr>
+            <?php
+        }
+
+        /**
+         * Add category short description field
+         *
+         * @return WYSIWYG editor
+         */
+        public function add_coupon_category_short_desc_field()
+        {
+            $this->get_nonce(); ?>
+
+            <div class="form-field term-short-description-wrap">
+            <label for="sd_coupon_category_short_description"><?php _e('Short Description', 'sd_coupon_central') ?></label>
+                <textarea name="sd_coupon_category_short_description" id="sd_coupon_category_short_description" rows="5" cols="40"></textarea>
+                <p><?php _e('The short description of the coupon category.', 'sd_coupon_central') ?></p>
+            </div>
+            <?php
+        }
+
+        /**
+         * Add coupon category short description field into edit coupon category page
+         *
+         * @param Object $term
+         * @param String $taxonomy
+         * @return WYSIWYG editor
+         */
+        public function edit_coupon_category_short_desc_field($term, String $taxonomy)
+        {
+            $this->get_nonce(); ?>
+                <tr valign="top">
+                    <th scope="row"><?php _e('Short Description', 'sd_coupon_central') ?></th>
+                    <td>
+                        <?php wp_editor(html_entity_decode($this->get_category_short_description($term->term_id)), 'sd_coupon_category_short_description', array('media_buttons' => false)); ?>
+                    </td>
+                </tr>
+            <?php
+        }
+
+        /**
+         * Get category short description
+         *
+         * @param Int $term_id
+         * @return String
+         */
+        public function get_category_short_description(Int $term_id)
+        {
+            $short_description = get_term_meta($term_id, '_sd_coupon_category_short_description', true);
+            $short_description = wp_kses_post($short_description);
+
+            return $short_description;
+        }
+
+        /**
+         * On save category
+         *
+         * @param Int $termId
+         * @return void
+         */
+        public function save_category(Int $termId)
+        {
+            if (!isset($_POST['sd_coupon_nonce']) ||
+                !wp_verify_nonce($_POST['sd_coupon_nonce'], 'sd_coupon_form')
+            ) {
+                return;
+            }
+
+            // Update icon
+            $oldIcon  = $this->get_category_icon($termId);
+            $newIcon = isset($_POST['sd_coupon_category_icon']) ? esc_url_raw($_POST['sd_coupon_category_icon']) : '';
+
+            if ($oldIcon !== $newIcon) {
+                update_term_meta($termId, '_sd_coupon_category_icon', $newIcon);
+            }
+
+            // Update short description
+            $oldShortDesc  = $this->get_category_short_description($termId);
+            $newShortDesc = isset($_POST['sd_coupon_category_short_description']) ? wp_kses_post($_POST['sd_coupon_category_short_description']) : '';
+
+            if ($oldShortDesc !== $newShortDesc) {
+                update_term_meta($termId, '_sd_coupon_category_short_description', $newShortDesc);
+            }
+        }
+
+        /**
+         * Get category icon URL
+         *
+         * @param Int $term_id
+         * @return String
+         */
+        public function get_category_icon(Int $term_id)
+        {
+            $icon = get_term_meta($term_id, '_sd_coupon_category_icon', true);
+            $icon = esc_url_raw($icon);
+
+            return $icon;
+        }
+
+        /**
+         * Render category icon column
+         *
+         * @param String $out
+         * @param String $column
+         * @param Id $term_id
+         * @return String
+         */
+        public function render_category_icon_column(String $out, String $column_name, Int $term_id)
+        {
+            if ($column_name == 'sd-coupon-category-icon') {
+                $icon  = $this->get_category_icon($term_id);
+                $out = sprintf('<span class="sdcc-category-icon-block"><img src="%s" /></div>', esc_attr($icon));
+            }
+            
+            return $out;
         }
     }
 

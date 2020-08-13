@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Admin scripts class
+ * Store service class
  */
 if (!class_exists('SDCOUPON_Store_Service')) {
     class SDCOUPON_Store_Service
