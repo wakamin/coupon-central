@@ -32,8 +32,11 @@ include_once SDCOUPON_PLUGIN_PATH . 'includes/admin/class-sdcoupon-admin-scripts
 // Frontend Scripts
 include_once SDCOUPON_PLUGIN_PATH . 'includes/frontend/class-sdcoupon-frontend-scripts.php';
 
-// Coupon archive template
+// Coupon archive
 include_once SDCOUPON_PLUGIN_PATH . 'includes/frontend/class-sdcoupon-coupon-archive.php';
+
+// Coupon page
+include_once SDCOUPON_PLUGIN_PATH . 'includes/frontend/class-sdcoupon-coupon-page.php';
 
 // Store service
 include_once SDCOUPON_PLUGIN_PATH . 'includes/services/class-sdcoupon-store-service.php';

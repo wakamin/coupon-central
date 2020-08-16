@@ -69,3 +69,35 @@ if (!function_exists('sdcc_coupon_link')) {
         return $coupon->couponLink();
     }
 }
+
+if (!function_exists('sdcc_coupon_meta')) {
+    function sdcc_coupon_meta()
+    {
+        if (get_post_type() != 'sd_coupon') {
+            return;
+        } ?>
+        <div class="sdcc-coupon__meta">
+            <ul>
+                <li>
+                    <?php
+                        printf(
+                            /* translators: %s: Post Date */
+                            esc_html__('Posted on %s', 'sd_coupon'),
+            '<a href="'.esc_url(get_permalink()).'">'.
+                            '<time datetime="'.esc_attr(get_the_date('c')).'">'.esc_html(get_the_date()).'</time>'.
+                            '</a>'
+        ); ?>
+                </li>
+                <li>
+                    <?php
+                        printf(
+                            /* translators: %s: Post Author */
+                            esc_html__('By %s', 'sd_coupon'),
+                            '<a href="'.esc_url(get_author_posts_url(get_the_author_meta('ID'))).'">'.esc_html(get_the_author()).'</a>'
+                        ); ?>
+                </li>
+            </ul>
+        </div>
+        <?php
+    }
+}

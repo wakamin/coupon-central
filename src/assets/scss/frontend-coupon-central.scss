@@ -10,7 +10,9 @@
 @import "frontend/abstracts/variables";
 @import "frontend/abstracts/mixins";
 
+@import "frontend/components/button";
 @import "frontend/components/coupon-card";
 @import "frontend/components/store-logo";
 
 @import "frontend/pages/archive";
+@import "frontend/pages/coupon";

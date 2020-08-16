@@ -53,9 +53,9 @@ if (!class_exists('SDCOUPON_Coupon_Archive')) {
 
             if ($this->isRelatedCouponTaxonomy()) {
                 $theme_files = ['archive-sd_coupon.php'];
-                $exists_in_theme = locate_template($theme_files, false);
-                if ($exists_in_theme != '') {
-                    return $exists_in_theme;
+                $theme_template = locate_template($theme_files, false);
+                if ($theme_template != '') {
+                    return $theme_template;
                 } else {
                     return SDCOUPON_PLUGIN_PATH . '/views/frontend/coupon/coupon-archive.php';
                 }
