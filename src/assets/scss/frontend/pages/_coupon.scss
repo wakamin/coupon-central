@@ -5,8 +5,9 @@
         height: 340px;
         margin: 50px auto 0;
         background: #ffffff;
+        overflow: hidden;
 
-        @media only screen and(max-width: 992px) {
+        @media only screen and(max-width: 768px) {
             width: 90%;
         }
 
@@ -15,9 +16,17 @@
         }
 
         .sdcc-featured-image {
-            position: absolute;
-            top: 0;
-            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+
+            img {
+                flex-shrink: 0;
+                min-width: 100%;
+                min-height: 100%;
+                max-width: inherit;
+            }
         }
 
         .sdcc-ft-overlay {
