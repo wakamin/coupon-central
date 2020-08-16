@@ -23,6 +23,7 @@ if (!class_exists('SDCOUPON_Frontend_Script')) {
         {
             wp_enqueue_style('sdcc-frontend', SDCOUPON_PLUGIN_URL . 'assets/css/frontend-coupon-central.css', [], '1.0.0', 'all');
 
+            wp_enqueue_script('sdcc-clipboard', SDCOUPON_PLUGIN_URL . 'assets/lib/js/clipboard.js', [], '2.0.6', false);
             wp_register_script('sdcc-frontend-script', SDCOUPON_PLUGIN_URL . 'assets/js/frontend-coupon-central.js', ['jquery'], false);
             wp_localize_script(
                 'sdcc-frontend-script',
@@ -32,6 +33,8 @@ if (!class_exists('SDCOUPON_Frontend_Script')) {
                     'nonce' => wp_create_nonce('sdcc-script-nonce'),
                     'show_more_text' => __('Show more', 'sd_coupon_central'),
                     'show_less_text' => __('Show less', 'sd_coupon_central'),
+                    'copied_text' => __('Copied', 'sd_coupon_central'),
+                    'something_wrong_text' => __('Something went wrong', 'sd_coupon_central')
                 )
             );
             wp_enqueue_script('sdcc-frontend-script');

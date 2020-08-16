@@ -1,6 +1,7 @@
 import $ from "jquery";
 
 $(document).ready(function () {
+    /*============ Coupon Card =============*/
     let sdcc_card = {
         els: {
             show_excerpt: $(".sdcc-card__excerpt-show"),
@@ -32,5 +33,17 @@ $(document).ready(function () {
             $(this).attr("title", sdcc_script.show_more_text);
             $(this).html(sdcc_script.show_more_text);
         }
+    });
+
+    /*============ Coupon Page ============== */
+    let sdcc_copy = new ClipboardJS(".sdcc-code__copy-btn");
+
+    sdcc_copy.on("success", function (e) {
+        $(".sdcc-code__copy-btn").html(sdcc_script.copied_text);
+        e.clearSelection();
+    });
+
+    sdcc_copy.on("error", function (e) {
+        alert(sdcc_script.something_wrong_text);
     });
 });
