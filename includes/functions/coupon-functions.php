@@ -1,5 +1,34 @@
 <?php
 
+if (!function_exists('sdcc_coupon_store')) {
+    /**
+     * Get coupon store
+     *
+     * @param Int $couponId
+     * @param Bool $single
+     * @return Object
+     */
+    function sdcc_coupon_store(Int $couponId, Bool $single = true)
+    {
+        $coupon = new SDCOUPON_Coupon_Service($couponId);
+        return $coupon->getStore($single);
+    }
+}
+
+if (!function_exists('sdcc_coupon_categories')) {
+    /**
+     * Get coupon categories
+     *
+     * @param Int $couponId
+     * @return Array
+     */
+    function sdcc_coupon_categories(Int $couponId)
+    {
+        $coupon = new SDCOUPON_Coupon_Service($couponId);
+        return $coupon->getCategories();
+    }
+}
+
 if (!function_exists('sdcc_coupon_image')) {
     /**
      * Get coupon image
@@ -82,7 +111,7 @@ if (!function_exists('sdcc_coupon_meta')) {
                     <?php
                         printf(
                             /* translators: %s: Post Date */
-                            esc_html__('Posted on %s', 'sd_coupon'),
+                            esc_html__('Posted on %s', 'sd_coupon_central'),
             '<a href="'.esc_url(get_permalink()).'">'.
                             '<time datetime="'.esc_attr(get_the_date('c')).'">'.esc_html(get_the_date()).'</time>'.
                             '</a>'
@@ -92,9 +121,9 @@ if (!function_exists('sdcc_coupon_meta')) {
                     <?php
                         printf(
                             /* translators: %s: Post Author */
-                            esc_html__('By %s', 'sd_coupon'),
-                            '<a href="'.esc_url(get_author_posts_url(get_the_author_meta('ID'))).'">'.esc_html(get_the_author()).'</a>'
-                        ); ?>
+                            esc_html__('By %s', 'sd_coupon_central'),
+            '<a href="'.esc_url(get_author_posts_url(get_the_author_meta('ID'))).'">'.esc_html(get_the_author()).'</a>'
+        ); ?>
                 </li>
             </ul>
         </div>

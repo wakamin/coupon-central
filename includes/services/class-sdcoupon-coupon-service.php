@@ -36,6 +36,7 @@ if (!class_exists('SDCOUPON_Coupon_Service')) {
         public function getStoreData()
         {
             $couponData = get_post($this->couponId);
+            $couponData->store = $this->getStore();
             $couponData->image = $this->getCouponImage();
             $couponData->is_exclusive = $this->isExclusive();
             $couponData->expired_date = $this->expiredDate();
@@ -43,6 +44,33 @@ if (!class_exists('SDCOUPON_Coupon_Service')) {
             $couponData->coupon_link = $this->couponLink();
 
             return $couponData;
+        }
+
+        /**
+         * Get store
+         *
+         * @param Bool $single
+         * @return Mixed Object WP_Term if single, Array if not single
+         */
+        public function getStore(Bool $single = true)
+        {
+            $stores = get_the_terms($this->couponId, 'sd_coupon_store');
+
+            if ($single) {
+                return $stores[0];
+            }
+
+            return $stores;
+        }
+
+        /**
+         * Get categories
+         *
+         * @return Array of WP_Term
+         */
+        public function getCategories()
+        {
+            return get_the_terms($this->couponId, 'sd_coupon_category');
         }
 
         /**
