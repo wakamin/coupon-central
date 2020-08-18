@@ -25,7 +25,7 @@ get_header(); ?>
                         <?php the_title('<h1 class="sdcc-coupon__entry-title">', '</h1>') ?>
                         <div class="sdcc-code">
                             <div class="sdcc-code__input"><?php echo sdcc_coupon_code(get_the_ID()) ?></div>
-                            <button class="sdcc-cp-btn sdcc-code__copy-btn" type="button" data-clipboard-text="<?php echo sdcc_coupon_code(get_the_ID()) ?>">
+                            <button id="sdcc-copy-code" class="sdcc-cp-btn sdcc-code__copy-btn" type="button" data-id="<?php echo esc_attr(get_the_ID()) ?>" data-clipboard-text="<?php echo sdcc_coupon_code(get_the_ID()) ?>">
                                 <?php esc_html_e('Copy', 'sd_coupon_central') ?>
                             </button>
                         </div>

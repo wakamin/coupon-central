@@ -36,13 +36,33 @@ $(document).ready(function () {
     });
 
     /*============ Coupon Page ============== */
-    let sdcc_copy = new ClipboardJS(".sdcc-code__copy-btn");
+    let sdcc_coupon_page = {
+        els: {
+            copy_btn: $("#sdcc-copy-code"),
+        },
+        data: {},
+    };
 
+    // Copy code
+    let sdcc_copy = new ClipboardJS("#sdcc-copy-code");
     sdcc_copy.on("success", function (e) {
-        $(".sdcc-code__copy-btn").html(sdcc_script.copied_text);
+        sdcc_coupon_page.els.copy_btn.html(sdcc_script.copied_text);
         e.clearSelection();
-    });
 
+        $.ajax({
+            type: "POST",
+            url: sdcc_script.ajaxurl,
+            data: {
+                action: "sdcc_copy_click",
+                nonce_ajax: sdcc_script.nonce,
+                coupon_id: sdcc_coupon_page.els.copy_btn.data("id"),
+            },
+            success: function (res) {},
+            error: function (err) {
+                console.log(err);
+            },
+        });
+    });
     sdcc_copy.on("error", function (e) {
         alert(sdcc_script.something_wrong_text);
     });
