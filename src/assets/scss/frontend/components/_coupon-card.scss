@@ -12,7 +12,7 @@
     &--list {}
 
     &__image {
-        width: 25%;
+        width: 200px;
 
         img {}
     }
@@ -25,8 +25,8 @@
 
     &__title {
         font-size: 23px;
-        margin-top: 0;
-        margin-bottom: 7px;
+        margin-top: 0 !important;
+        margin-bottom: 7px !important;
         text-decoration: none;
     }
 
@@ -60,28 +60,32 @@
         background: orangered;
         padding: 2px 4px 7px;
         color: #ffffff;
+        font-size: 12px;
+        width: 20px;
+        height: 30px;
+        text-align: center;
         box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.18);
 
         &:before {
             content: '';
-            width: 18px;
-            height: 15px;
+            width: 21px;
+            height: 10px;
             background: #ffffff;
             transform: rotate(45deg);
             position: absolute;
-            bottom: -7px;
-            left: -8px;
+            bottom: 0px;
+            left: -9px;
         }
 
         &:after {
             content: '';
-            width: 18px;
-            height: 15px;
+            width: 23px;
+            height: 12px;
             background: #ffffff;
             transform: rotate(-45deg);
             position: absolute;
-            bottom: -7px;
-            left: 14px;
+            bottom: -2px;
+            left: 8px;
         }
     }
 

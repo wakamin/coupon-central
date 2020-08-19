@@ -9,7 +9,9 @@ $(document).ready(function () {
         data: {},
     };
 
-    sdcc_card.els.show_excerpt.on("click", function () {
+    sdcc_card.els.show_excerpt.on("click", function (e) {
+        e.preventDefault();
+
         let type = $(this).attr("data-type");
         let excerpt_el = $(this).parent(".sdcc-card__excerpt");
         let title_el = excerpt_el.prev(".sdcc-card__title");
