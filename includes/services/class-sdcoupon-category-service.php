@@ -36,24 +36,25 @@ if (!class_exists('SDCOUPON_Category_Service')) {
         public function getCategoryData()
         {
             $categoryData = get_term($this->categoryId);
-            $categoryData->logo = $this->getCategoryIcon();
+            $categoryData->icon = $this->getCategoryIcon();
             $categoryData->short_description = $this->getCategoryShortDescription();
 
-            return $categoryData;
+            return apply_filters('sdcc_category_data', $categoryData);
         }
 
         /**
-         * Get category logo url
+         * Get category logo icon url
          *
          * @return String
          */
         public function getCategoryIcon()
         {
-            $logo = get_term_meta($this->categoryId, '_sd_coupon_category_icon', true);
-            if (!$logo || $logo == '') {
-                $logo = SDCOUPON_PLUGIN_URL . 'assets/images/logo-placeholder.png';
+            $icon = get_term_meta($this->categoryId, '_sd_coupon_category_icon', true);
+            if (!$icon || $icon == '') {
+                $defaultIcon = SDCOUPON_PLUGIN_URL . 'assets/images/logo-placeholder.png';
+                $icon = apply_filters('sdcc_default_category_icon', $defaultIcon);
             }
-            return esc_url($logo);
+            return esc_url($icon);
         }
 
         /**

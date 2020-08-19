@@ -33,7 +33,7 @@ if (!class_exists('SDCOUPON_Coupon_Service')) {
          *
          * @return Object
          */
-        public function getStoreData()
+        public function getCouponData()
         {
             $couponData = get_post($this->couponId);
             $couponData->store = $this->getStore();
@@ -43,7 +43,7 @@ if (!class_exists('SDCOUPON_Coupon_Service')) {
             $couponData->coupon_code = $this->couponCode();
             $couponData->coupon_link = $this->couponLink();
 
-            return $couponData;
+            return apply_filters('sdcc_coupon_data', $couponData);
         }
 
         /**
@@ -80,7 +80,8 @@ if (!class_exists('SDCOUPON_Coupon_Service')) {
          */
         public function getCouponImage()
         {
-            return esc_attr(get_post_meta($this->couponId, '_sd_coupon_image', true));
+            $image = esc_attr(get_post_meta($this->couponId, '_sd_coupon_image', true));
+            return apply_filters('sdcc_coupon_image', $image);
         }
 
         /**
@@ -100,7 +101,8 @@ if (!class_exists('SDCOUPON_Coupon_Service')) {
          */
         public function expiredDate()
         {
-            return esc_attr(get_post_meta($this->couponId, '_sd_coupon_expired_date', true));
+            $exp = esc_attr(get_post_meta($this->couponId, '_sd_coupon_expired_date', true));
+            return apply_filters('sdcc_coupon_exp_date', $exp);
         }
 
         /**
@@ -120,7 +122,8 @@ if (!class_exists('SDCOUPON_Coupon_Service')) {
          */
         public function couponLink()
         {
-            return esc_attr(get_post_meta($this->couponId, '_sd_coupon_link', true));
+            $link = esc_attr(get_post_meta($this->couponId, '_sd_coupon_link', true));
+            return apply_filters('sdcc_coupon_link', $link);
         }
     }
 }

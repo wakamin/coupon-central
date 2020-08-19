@@ -39,7 +39,7 @@ if (!class_exists('SDCOUPON_Store_Service')) {
             $storeData->logo = $this->getStoreLogo();
             $storeData->short_description = $this->getStoreShortDescription();
 
-            return $storeData;
+            return apply_filters('sdcc_store_data', $storeData);
         }
 
         /**
@@ -51,7 +51,8 @@ if (!class_exists('SDCOUPON_Store_Service')) {
         {
             $logo = get_term_meta($this->storeId, '_sd_coupon_store_logo', true);
             if (!$logo || $logo == '') {
-                $logo = SDCOUPON_PLUGIN_URL . 'assets/images/logo-placeholder.png';
+                $defaultLogo = SDCOUPON_PLUGIN_URL . 'assets/images/logo-placeholder.png';
+                $logo = apply_filters('sdcc_default_store_logo', $defaultLogo);
             }
             return esc_url($logo);
         }

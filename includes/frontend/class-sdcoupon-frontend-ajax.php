@@ -44,6 +44,11 @@ if (!class_exists('SDCOUPON_Frontend_ajax')) {
             wp_send_json_success(['message' => __('Success', 'sd_coupon_central')]);
         }
 
+        /**
+         * On coupon link click ajax action
+         *
+         * @return Json response
+         */
         public function coupon_link_click()
         {
             check_ajax_referer('sdcc-script-nonce', 'nonce_ajax');
