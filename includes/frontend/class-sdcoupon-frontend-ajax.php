@@ -39,7 +39,7 @@ if (!class_exists('SDCOUPON_Frontend_ajax')) {
             $couponId = intval($_POST['coupon_id']);
             $coupon = get_post($couponId);
 
-            do_action('sdcc_code_click', $coupon);
+            do_action('sdcc_copy_code_click', $coupon);
 
             wp_send_json_success(['message' => __('Success', 'sd_coupon_central')]);
         }
@@ -47,6 +47,20 @@ if (!class_exists('SDCOUPON_Frontend_ajax')) {
         public function coupon_link_click()
         {
             check_ajax_referer('sdcc-script-nonce', 'nonce_ajax');
+
+            if (!isset($_POST['coupon_id'])) {
+                wp_send_json_error(['message' => __('Bad params', 'sd_coupon_central')], 400);
+            }
+
+            $couponId = intval($_POST['coupon_id']);
+            $coupon = get_post($couponId);
+
+            do_action('sdcc_coupon_link_click', $coupon);
+
+            wp_send_json_success([
+                'message' => __('Success', 'sd_coupon_central'),
+                'data' => sdcc_coupon_link($coupon->ID)
+            ]);
         }
     }
     

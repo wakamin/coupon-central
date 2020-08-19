@@ -42,7 +42,7 @@ get_header(); ?>
                         </div>
                         
                         <div class="sdcc-coupon__btn-wrapper">
-                            <button type="button" class="sdcc-cp-btn sdcc-cp-btn--block" data-id="<?php echo get_the_ID() ?>">
+                            <button type="button" id="sdcc-coupon-link" class="sdcc-cp-btn sdcc-cp-btn--block" data-id="<?php echo get_the_ID() ?>">
                                 <?php esc_html_e('Go to Shop', 'sd_coupon_central') ?>
                             </button>
                         </div>

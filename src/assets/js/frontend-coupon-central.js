@@ -39,6 +39,7 @@ $(document).ready(function () {
     let sdcc_coupon_page = {
         els: {
             copy_btn: $("#sdcc-copy-code"),
+            coupon_link: $("#sdcc-coupon-link"),
         },
         data: {},
     };
@@ -65,5 +66,26 @@ $(document).ready(function () {
     });
     sdcc_copy.on("error", function (e) {
         alert(sdcc_script.something_wrong_text);
+    });
+
+    // Click coupon link
+    sdcc_coupon_page.els.coupon_link.on("click", function () {
+        $.ajax({
+            type: "POST",
+            url: sdcc_script.ajaxurl,
+            data: {
+                action: "sdcc_coupon_link_click",
+                nonce_ajax: sdcc_script.nonce,
+                coupon_id: $(this).data("id"),
+            },
+            success: function (res) {
+                let data = res.data;
+                window.open(data.data, "_blank");
+            },
+            error: function (err) {
+                console.log(err);
+                alert(sdcc_script.something_wrong_text);
+            },
+        });
     });
 });
