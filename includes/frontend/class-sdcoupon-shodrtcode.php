@@ -34,8 +34,13 @@ if (!class_exists('SDCOUPON_Shortcode')) {
             setup_postdata($post);
 
             ob_start();
+
+            do_action('sdcc_coupon_shortcode_before', $post);
             include SDCOUPON_PLUGIN_PATH . 'views/frontend/coupon/coupon-card.php';
+            do_action('sdcc_coupon_shortcode_after', $post);
+
             wp_reset_postdata();
+            
             $output = ob_get_clean();
             return $output;
         }
