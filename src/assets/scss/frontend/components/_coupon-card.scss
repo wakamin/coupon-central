@@ -28,6 +28,10 @@
         margin-top: 0 !important;
         margin-bottom: 7px !important;
         text-decoration: none;
+
+        &::before {
+            display: none;
+        }
     }
 
     &__excerpt {
