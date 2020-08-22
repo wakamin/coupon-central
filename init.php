@@ -61,3 +61,6 @@ include_once SDCOUPON_PLUGIN_PATH . 'includes/frontend/class-sdcoupon-frontend-a
 
 // Shortcode
 include_once SDCOUPON_PLUGIN_PATH . 'includes/frontend/class-sdcoupon-shodrtcode.php';
+
+// Widget
+include_once SDCOUPON_PLUGIN_PATH . 'includes/widgets/class-sdcoupon-widget-random-coupons.php';
