@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "Build coupon site with ease.",
     "main": "index.js",
+    "domain": "sd_coupon_central",
     "scripts": {
         "start": "gulp",
         "build": "gulp build --prod",
@@ -28,5 +29,7 @@
         "webpack-stream": "^5.2.1",
         "yargs": "^15.4.1"
     },
-    "dependencies": {}
+    "dependencies": {
+        "gulp-wp-pot": "^2.4.3"
+    }
 }

@@ -10,6 +10,7 @@ import webpack from "webpack-stream";
 import named from "vinyl-named";
 import zip from "gulp-zip";
 import info from "./package.json";
+import wpPot from "gulp-wp-pot";
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -60,6 +61,18 @@ const paths = {
 };
 
 export const clean = () => del(["assets"]);
+
+export const pot = () => {
+    return gulp
+        .src("**/*.php")
+        .pipe(
+            wpPot({
+                domain: info.domain,
+                package: info.name,
+            }),
+        )
+        .pipe(gulp.dest(`languages/${info.domain}.pot`));
+};
 
 export const styles = () => {
     return gulp
@@ -137,6 +150,7 @@ export const dev = gulp.series(
 export const build = gulp.series(
     clean,
     gulp.parallel(styles, scripts, images, copy),
+    pot,
 );
 
 export const bundle = gulp.series(build, compress);

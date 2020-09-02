@@ -31,7 +31,7 @@ get_header(); ?>
                         </div>
                         <div class="sdcc-coupon__data">
                             <div class="sdcc-coupon__exp">
-                                <?php echo sprintf(__('Expired at: %s', 'sd_counpon_central'), sdcc_coupon_exp_date(get_the_ID())) ?>
+                                <?php echo sprintf(__('Expired at: %s', 'sd_coupon_central'), sdcc_coupon_exp_date(get_the_ID())) ?>
                             </div>
                             <div class="sdcc-coupon__store">
                                 <?php $store = sdcc_coupon_store(get_the_ID()); ?>
