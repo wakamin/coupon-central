@@ -57,11 +57,18 @@ if (!class_exists('SDCOUPON_Widget_Random_Coupons')) {
             );
 
             if ($randomCoupons->have_posts()) {
-                echo '<div class="widget-random-coupons">';
+                echo '<div class="widget-rc">';
                 while ($randomCoupons->have_posts()) {
                     $randomCoupons->the_post();
-                    echo '<div>';
-                    echo '<h6><a href="'.esc_url(get_permalink()).'">'.get_the_title().'</a></h6>';
+                    echo '<div class="widget-rc__item">';
+                    echo '<div class="widget-rc__image">';
+                    echo '<a href="'.get_the_permalink().'" title="'.get_the_title().'">';
+                    echo '<img src="'.sdcc_coupon_image(get_the_ID()).'" alt="<?php echo get_the_title() ?>">';
+                    echo '</a>';
+                    echo '</div>';
+                    echo '<h3 class="widget-rc__title">';
+                    echo '<a href="'.get_the_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a>';
+                    echo '</h3>';
                     echo '</div>';
                 }
                 echo '</div>';

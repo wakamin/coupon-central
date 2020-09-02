@@ -8,6 +8,9 @@ if (!defined('ABSPATH')) {
 // Plugin install
 include_once SDCOUPON_PLUGIN_PATH . 'includes/install/class-sdcoupon-install.php';
 
+// Translation
+include_once SDCOUPON_PLUGIN_PATH . 'includes/translation/class-sdcoupon-translation.php';
+
 // Functions
 include_once SDCOUPON_PLUGIN_PATH . 'includes/functions/functions.php';
 
