@@ -4,5 +4,6 @@
     box-shadow: $boxShadow;
     height: 115px;
     padding: 10px;
+    overflow: hidden;
     @include flexCenter;
 }
