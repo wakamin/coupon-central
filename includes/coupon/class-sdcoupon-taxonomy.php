@@ -85,9 +85,10 @@ if (!class_exists('SDCOUPON_Taxonomy')) {
                 'labels' => $labels,
                 'show_ui' => true,
                 'show_in_menu' => true,
-                'show_in_rest' => true,
+                'show_in_rest' => false,
                 'show_admin_column' => true,
                 'query_var' => true,
+                'meta_box_cb' => false,
                 'rewrite' => [
                     'slug' => apply_filters('sdcoupon_store_taxonomy_slug', 'store'),
                     'with_front' => apply_filters('sdcoupon_store_taxonomy_with_front', true)

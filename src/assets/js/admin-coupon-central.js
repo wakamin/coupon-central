@@ -1,4 +1,7 @@
-jQuery(document).ready(function ($) {
+import $ from "jquery";
+import "select2";
+
+$(document).ready(function () {
     "use strict";
 
     /*=============== Meta box media uploader ================ */
@@ -52,5 +55,10 @@ jQuery(document).ready(function ($) {
         $(preview_target).attr("src", "");
         $(preview_target).parent().addClass("sdcc-hide");
         $(".sdcc-media__remove-wrapper").addClass("sdcc-hide");
+    });
+
+    // Select2
+    $(".sdcc-select2").select2({
+        placeholder: "Select an option",
     });
 });

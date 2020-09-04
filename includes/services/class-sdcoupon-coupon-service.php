@@ -49,18 +49,14 @@ if (!class_exists('SDCOUPON_Coupon_Service')) {
         /**
          * Get store
          *
-         * @param Bool $single
          * @return Mixed Object WP_Term if single, Array if not single
          */
-        public function getStore(Bool $single = true)
+        public function getStore()
         {
+            $store = esc_attr(get_post_meta($this->couponId, '_sd_coupon_store', true));
             $stores = get_the_terms($this->couponId, 'sd_coupon_store');
 
-            if ($single) {
-                return $stores[0];
-            }
-
-            return $stores;
+            return $stores[0];
         }
 
         /**

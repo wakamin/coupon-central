@@ -8,10 +8,10 @@ if (!function_exists('sdcc_coupon_store')) {
      * @param Bool $single
      * @return Object
      */
-    function sdcc_coupon_store(Int $couponId, Bool $single = true)
+    function sdcc_coupon_store(Int $couponId)
     {
         $coupon = new SDCOUPON_Coupon_Service($couponId);
-        return $coupon->getStore($single);
+        return $coupon->getStore();
     }
 }
 

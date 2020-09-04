@@ -10,7 +10,14 @@ if (!defined('ABSPATH')) {
 <table class="sdcc-mbox-form-table" role="presentation">
     <tbody>
         <?php foreach ($this->couponDetailsMetaBoxes as $mBox): ?>
-        <?php $value = esc_attr(get_post_meta($post->ID, $mBox['key'], true)); ?>
+        <?php
+            if ($mBox['key'] == '_sd_coupon_store') {
+                $store = sdcc_coupon_store($post->ID);
+                $value = $store->term_id;
+            } else {
+                $value = esc_attr(get_post_meta($post->ID, $mBox['key'], true));
+            }
+        ?>
             <tr>
                 <th scope="row">
                     <label for="sd_coupon_code"><?php echo $mBox['name'] ?></label>
@@ -18,6 +25,15 @@ if (!defined('ABSPATH')) {
                 <td>
                     <?php if ($mBox['field_type'] == 'text'): ?>
                         <input type="text" class="<?php echo $mBox['wide_field'] ? 'widefat' : '' ?>" name="<?php echo $mBox['key'] ?>" id="<?php echo $mBox['key'] ?>" value="<?php echo $value ?>" />
+                    <?php endif; ?>
+
+                    <?php if ($mBox['field_type'] == 'select'): ?>
+                        <select name="<?php echo $mBox['key'] ?>" id="<?php echo $mBox['key'] ?>" class="sdcc-select2">
+                            <?php $options = call_user_func($mBox['options']); ?>
+                            <?php foreach ($options as $option): ?>
+                                <option value="<?php echo esc_attr($option['value']) ?>" <?php selected($value, esc_attr($option['value'])) ?>><?php echo esc_attr($option['text']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     <?php endif; ?>
 
                     <?php if ($mBox['field_type'] == 'datepicker'): ?>

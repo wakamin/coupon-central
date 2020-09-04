@@ -29,6 +29,14 @@ if (!class_exists('SDCOUPON_Detail_Meta_Box')) {
         {
             $newMetaBoxes = [
                 [
+                    'key' => '_sd_coupon_store',
+                    'name' => __('Store', 'sd_coupon_central'),
+                    'field_type' => 'select',
+                    'options' => 'sdcc_coupon_store_options',
+                    'wide_field' => false,
+                    'sort_order' => 5
+                ],
+                [
                     'key' => '_sd_coupon_link',
                     'name' => __('Link', 'sd_coupon_central'),
                     'field_type' => 'text',

@@ -1,47 +1,6 @@
-.sdcc-hide {
-    display: none !important;
-}
+@import '../../../node_modules/select2/src/scss/core.scss';
 
-.sdcc-text-danger {
-    color: #dc3232 !important;
-}
-
-.sdcc-mbox-form-table {
-    width: 100%;
-
-    tr {
-        th {
-            width: 160px;
-            padding: 5px 5px 5px 0;
-            text-align: left;
-        }
-
-        th,
-        td {
-            padding: 7px 0;
-        }
-    }
-}
-
-.sdcc-media {
-    &__image-preview-wrapper {
-        margin-bottom: 10px;
-
-        img {
-            height: auto;
-            max-width: 200px;
-        }
-    }
-
-    &__remove-wrapper {
-        margin-top: 10px;
-    }
-}
-
-.sdcc-category-icon-block,
-.sdcc-store-logo-block {
-    img {
-        height: auto;
-        max-width: 150px;
-    }
-}
+@import 'admin/utils/utils';
+@import 'admin/components/form';
+@import 'admin/components/table';
+@import 'admin/others/others';

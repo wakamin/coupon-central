@@ -100,11 +100,17 @@ if (!class_exists('SDCOUPON_Meta_Box')) {
             foreach ($this->couponDetailsMetaBoxes as $mBox) {
                 // Update meta box coupon details
                 if (array_key_exists($mBox['key'], $_POST)) {
-                    update_post_meta(
-                        $post_id,
-                        $mBox['key'],
-                        sanitize_text_field($_POST[$mBox['key']])
-                    );
+                    $value = sanitize_text_field($_POST[$mBox['key']]);
+
+                    if ($mBox['key'] == '_sd_coupon_store') {
+                        wp_set_object_terms($post_id, (int)$value, 'sd_coupon_store');
+                    } else {
+                        update_post_meta(
+                            $post_id,
+                            $mBox['key'],
+                            $value
+                        );
+                    }
                 } else {
                     if ($mBox['field_type'] == 'checkbox') {
                         update_post_meta($post_id, $mBox['key'], '');

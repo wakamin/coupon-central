@@ -46,3 +46,30 @@ if (!function_exists('sdcc_store_short_description')) {
         return $service->getStoreShortDescription();
     }
 }
+
+if (!function_exists('sdcc_coupon_store_options')) {
+    /**
+     * Get store taxonomy terms for options field
+     *
+     * @return Array
+     */
+    function sdcc_coupon_store_options()
+    {
+        $storesTermTax = get_terms([
+            'taxonomy' => 'sd_coupon_store',
+            'orderby' => 'name',
+            'hide_empty' => false,
+            'hide_empty' => false,
+        ]);
+
+        $stores = [];
+        foreach ($storesTermTax as $store) {
+            $stores[] = [
+                'value' => $store->term_id,
+                'text' => $store->name
+            ];
+        }
+
+        return $stores;
+    }
+}
