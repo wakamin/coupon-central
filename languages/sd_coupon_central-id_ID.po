@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: coupon-central\n"
-"POT-Creation-Date: 2020-09-02 16:57+0700\n"
+"POT-Creation-Date: 2020-09-04 10:58+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -30,23 +30,27 @@ msgid "Use this media"
 msgstr "Gunakan media ini"
 
 #: includes/coupon/class-sdcoupon-detail-meta-box.php:33
+msgid "Store"
+msgstr "Toko"
+
+#: includes/coupon/class-sdcoupon-detail-meta-box.php:41
 msgid "Link"
 msgstr "Tautan"
 
-#: includes/coupon/class-sdcoupon-detail-meta-box.php:40
+#: includes/coupon/class-sdcoupon-detail-meta-box.php:48
 msgid "Coupon Code"
 msgstr "Kode Kupon"
 
-#: includes/coupon/class-sdcoupon-detail-meta-box.php:47
+#: includes/coupon/class-sdcoupon-detail-meta-box.php:55
 msgid "Expired Date"
 msgstr "Tanggal Kadaluarsa"
 
-#: includes/coupon/class-sdcoupon-detail-meta-box.php:53
+#: includes/coupon/class-sdcoupon-detail-meta-box.php:61
 #: views/frontend/coupon/coupon-card.php:23
 msgid "Exclusive"
 msgstr "Eksklusif"
 
-#: includes/coupon/class-sdcoupon-detail-meta-box.php:59
+#: includes/coupon/class-sdcoupon-detail-meta-box.php:67
 msgid "Coupon Image"
 msgstr "Gambar Kupon"
 
@@ -202,97 +206,97 @@ msgstr "Toko"
 msgid "Back to stores"
 msgstr "Kembali ke toko"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:172
-#: includes/coupon/class-sdcoupon-taxonomy.php:190
-#: includes/coupon/class-sdcoupon-taxonomy.php:475
-#: includes/coupon/class-sdcoupon-taxonomy.php:493
+#: includes/coupon/class-sdcoupon-taxonomy.php:173
+#: includes/coupon/class-sdcoupon-taxonomy.php:191
+#: includes/coupon/class-sdcoupon-taxonomy.php:476
+#: includes/coupon/class-sdcoupon-taxonomy.php:494
 msgid "Short Description"
 msgstr "Deskripsi singkat"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:174
+#: includes/coupon/class-sdcoupon-taxonomy.php:175
 msgid "The short description of the store."
 msgstr "Deskripsi singkat dari toko."
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:209
-#: includes/coupon/class-sdcoupon-taxonomy.php:227
+#: includes/coupon/class-sdcoupon-taxonomy.php:210
+#: includes/coupon/class-sdcoupon-taxonomy.php:228
 msgid "Store Logo"
 msgstr "Logo Toko"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:274
-#: includes/coupon/class-sdcoupon-taxonomy.php:294
+#: includes/coupon/class-sdcoupon-taxonomy.php:275
+#: includes/coupon/class-sdcoupon-taxonomy.php:295
 msgid "Name"
 msgstr "Nama"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:275
+#: includes/coupon/class-sdcoupon-taxonomy.php:276
 msgid "Logo"
 msgstr "Logo"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:277
-#: includes/coupon/class-sdcoupon-taxonomy.php:297
+#: includes/coupon/class-sdcoupon-taxonomy.php:278
+#: includes/coupon/class-sdcoupon-taxonomy.php:298
 msgid "Slug"
 msgstr "Slug"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:278
-#: includes/coupon/class-sdcoupon-taxonomy.php:298
+#: includes/coupon/class-sdcoupon-taxonomy.php:279
+#: includes/coupon/class-sdcoupon-taxonomy.php:299
 msgid "Count"
 msgstr "Hitung"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:295
+#: includes/coupon/class-sdcoupon-taxonomy.php:296
 msgid "Icon"
 msgstr "Ikon"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:361
+#: includes/coupon/class-sdcoupon-taxonomy.php:362
 msgctxt "Taxonomy general name"
 msgid "Coupon Categories"
 msgstr "Kategori Kupon"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:362
+#: includes/coupon/class-sdcoupon-taxonomy.php:363
 msgctxt "Taxonomy singular name"
 msgid "Coupon Category"
 msgstr "Kategori Kupon"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:363
+#: includes/coupon/class-sdcoupon-taxonomy.php:364
 msgid "Search Coupon Category"
 msgstr "Cari Kategori Kupon"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:364
+#: includes/coupon/class-sdcoupon-taxonomy.php:365
 msgid "All Coupon Categories"
 msgstr "Semua Kategori Kupon"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:365
+#: includes/coupon/class-sdcoupon-taxonomy.php:366
 msgid "Parent Coupon Category"
 msgstr "Kategori Kupon Induk"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:366
+#: includes/coupon/class-sdcoupon-taxonomy.php:367
 msgid "Parent Coupon Category:"
 msgstr "Kategori Kupon Induk:"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:367
+#: includes/coupon/class-sdcoupon-taxonomy.php:368
 msgid "Edit Coupon Category"
 msgstr "Edit Kategori Kupon"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:368
+#: includes/coupon/class-sdcoupon-taxonomy.php:369
 msgid "Update Coupon Category"
 msgstr "Perbarui Kategori Kupon"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:369
+#: includes/coupon/class-sdcoupon-taxonomy.php:370
 msgid "Add New Coupon Category"
 msgstr "Tambah Baru Kategori Kupon"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:370
+#: includes/coupon/class-sdcoupon-taxonomy.php:371
 msgid "New Coupon Category Name"
 msgstr "Nama Kategori Kupon Baru"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:371
+#: includes/coupon/class-sdcoupon-taxonomy.php:372
 msgid "Categories"
 msgstr "Kategori"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:439
-#: includes/coupon/class-sdcoupon-taxonomy.php:457
+#: includes/coupon/class-sdcoupon-taxonomy.php:440
+#: includes/coupon/class-sdcoupon-taxonomy.php:458
 msgid "Icon Image"
 msgstr "Gambar Icon"
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:477
+#: includes/coupon/class-sdcoupon-taxonomy.php:478
 msgid "The short description of the coupon category."
 msgstr "Deskripsi singkat dari kategori kupon."
 
