@@ -22,22 +22,26 @@ msgid "Use this media"
 msgstr ""
 
 #: includes/coupon/class-sdcoupon-detail-meta-box.php:33
+msgid "Store"
+msgstr ""
+
+#: includes/coupon/class-sdcoupon-detail-meta-box.php:41
 msgid "Link"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-detail-meta-box.php:40
+#: includes/coupon/class-sdcoupon-detail-meta-box.php:48
 msgid "Coupon Code"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-detail-meta-box.php:47
+#: includes/coupon/class-sdcoupon-detail-meta-box.php:55
 msgid "Expired Date"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-detail-meta-box.php:53, views/frontend/coupon/coupon-card.php:23
+#: includes/coupon/class-sdcoupon-detail-meta-box.php:61, views/frontend/coupon/coupon-card.php:23
 msgid "Exclusive"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-detail-meta-box.php:59
+#: includes/coupon/class-sdcoupon-detail-meta-box.php:67
 msgid "Coupon Image"
 msgstr ""
 
@@ -189,89 +193,89 @@ msgstr ""
 msgid "Back to stores"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:172, includes/coupon/class-sdcoupon-taxonomy.php:190, includes/coupon/class-sdcoupon-taxonomy.php:475, includes/coupon/class-sdcoupon-taxonomy.php:493
+#: includes/coupon/class-sdcoupon-taxonomy.php:173, includes/coupon/class-sdcoupon-taxonomy.php:191, includes/coupon/class-sdcoupon-taxonomy.php:476, includes/coupon/class-sdcoupon-taxonomy.php:494
 msgid "Short Description"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:174
+#: includes/coupon/class-sdcoupon-taxonomy.php:175
 msgid "The short description of the store."
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:209, includes/coupon/class-sdcoupon-taxonomy.php:227
+#: includes/coupon/class-sdcoupon-taxonomy.php:210, includes/coupon/class-sdcoupon-taxonomy.php:228
 msgid "Store Logo"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:274, includes/coupon/class-sdcoupon-taxonomy.php:294
+#: includes/coupon/class-sdcoupon-taxonomy.php:275, includes/coupon/class-sdcoupon-taxonomy.php:295
 msgid "Name"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:275
+#: includes/coupon/class-sdcoupon-taxonomy.php:276
 msgid "Logo"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:277, includes/coupon/class-sdcoupon-taxonomy.php:297
+#: includes/coupon/class-sdcoupon-taxonomy.php:278, includes/coupon/class-sdcoupon-taxonomy.php:298
 msgid "Slug"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:278, includes/coupon/class-sdcoupon-taxonomy.php:298
+#: includes/coupon/class-sdcoupon-taxonomy.php:279, includes/coupon/class-sdcoupon-taxonomy.php:299
 msgid "Count"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:295
+#: includes/coupon/class-sdcoupon-taxonomy.php:296
 msgid "Icon"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:361
+#: includes/coupon/class-sdcoupon-taxonomy.php:362
 msgctxt "Taxonomy general name"
 msgid "Coupon Categories"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:362
+#: includes/coupon/class-sdcoupon-taxonomy.php:363
 msgctxt "Taxonomy singular name"
 msgid "Coupon Category"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:363
+#: includes/coupon/class-sdcoupon-taxonomy.php:364
 msgid "Search Coupon Category"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:364
+#: includes/coupon/class-sdcoupon-taxonomy.php:365
 msgid "All Coupon Categories"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:365
+#: includes/coupon/class-sdcoupon-taxonomy.php:366
 msgid "Parent Coupon Category"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:366
+#: includes/coupon/class-sdcoupon-taxonomy.php:367
 msgid "Parent Coupon Category:"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:367
+#: includes/coupon/class-sdcoupon-taxonomy.php:368
 msgid "Edit Coupon Category"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:368
+#: includes/coupon/class-sdcoupon-taxonomy.php:369
 msgid "Update Coupon Category"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:369
+#: includes/coupon/class-sdcoupon-taxonomy.php:370
 msgid "Add New Coupon Category"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:370
+#: includes/coupon/class-sdcoupon-taxonomy.php:371
 msgid "New Coupon Category Name"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:371
+#: includes/coupon/class-sdcoupon-taxonomy.php:372
 msgid "Categories"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:439, includes/coupon/class-sdcoupon-taxonomy.php:457
+#: includes/coupon/class-sdcoupon-taxonomy.php:440, includes/coupon/class-sdcoupon-taxonomy.php:458
 msgid "Icon Image"
 msgstr ""
 
-#: includes/coupon/class-sdcoupon-taxonomy.php:477
+#: includes/coupon/class-sdcoupon-taxonomy.php:478
 msgid "The short description of the coupon category."
 msgstr ""
 
@@ -323,6 +327,10 @@ msgstr ""
 
 #: views/frontend/coupon/coupon-page.php:29
 msgid "Copy"
+msgstr ""
+
+#: views/frontend/coupon/coupon-page.php:34
+msgid "Expired at: %s"
 msgstr ""
 
 #: views/frontend/coupon/coupon-page.php:46

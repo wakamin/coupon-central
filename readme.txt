@@ -1,30 +1,35 @@
-=== Samudra Log ===
+=== Coupon Central ===
 Contributors: wakamin
 Donate link: https://paypal.me/wakamin
 Tags: coupon, discount, promo
 Requires at least: 4.7
-Tested up to: 5.4
+Tested up to: 5.5.1
 Stable tag: 1.0.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Build coupon site with ease.
+Turn your Wordpress site into coupon central.
 
 == Description ==
 
 ## How to Use?
-Install the plugin. Then create coupon in Coupons menu.
+1. Add stores from Coupons menu then click the Stores menu link.
+2. Add categories from Coupons menu then click the Categories link.
+3. Add new coupon from Coupons menu then click Add New menu link.
 
 == Frequently Asked Questions ==
 
-= Is there any theme that suitable for this plubin? =
+= Is there any theme that suitable for this plugin? =
 
 Theme is in the making
 
 == Screenshots ==
 
-1. Create a coupon.
+1. Stores.
+2. Create new coupon.
+3. Coupon post.
+4. Store page.
 
 == Changelog ==
 
