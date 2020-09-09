@@ -34,7 +34,7 @@ if (!class_exists('SDCOUPON_Admin_Script')) {
                 wp_enqueue_media();
 
                 wp_enqueue_style('sdcc-admin', SDCOUPON_PLUGIN_URL . 'assets/css/admin-coupon-central.css');
-                wp_enqueue_style('sdcc-admin-jquery-ui', SDCOUPON_PLUGIN_URL . 'assets/lib/css/jquery-ui.css');
+                wp_enqueue_style('sdcc-admin-jquery-ui', SDCOUPON_PLUGIN_URL . 'assets/css/jquery-ui.css');
                 wp_register_script('sdcc-admin-script', SDCOUPON_PLUGIN_URL . 'assets/js/admin-coupon-central.js', array('jquery', 'jquery-ui-datepicker'), '1.0.0', false);
                 
                 wp_localize_script(
