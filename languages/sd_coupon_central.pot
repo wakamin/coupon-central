@@ -287,19 +287,19 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: includes/frontend/class-sdcoupon-frontend-scripts.php:34, views/frontend/coupon/coupon-card.php:11, views/frontend/coupon/coupon-card.php:12
+#: includes/frontend/class-sdcoupon-frontend-scripts.php:33, views/frontend/coupon/coupon-card.php:11, views/frontend/coupon/coupon-card.php:12
 msgid "Show more"
 msgstr ""
 
-#: includes/frontend/class-sdcoupon-frontend-scripts.php:35
+#: includes/frontend/class-sdcoupon-frontend-scripts.php:34
 msgid "Show less"
 msgstr ""
 
-#: includes/frontend/class-sdcoupon-frontend-scripts.php:36
+#: includes/frontend/class-sdcoupon-frontend-scripts.php:35
 msgid "Copied"
 msgstr ""
 
-#: includes/frontend/class-sdcoupon-frontend-scripts.php:37
+#: includes/frontend/class-sdcoupon-frontend-scripts.php:36
 msgid "Something went wrong"
 msgstr ""
 
