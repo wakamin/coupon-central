@@ -6,4 +6,9 @@
     padding: 10px;
     overflow: hidden;
     @include flexCenter;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
 }
